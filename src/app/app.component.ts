@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Post } from './interfaces/post';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { PostsService } from './services/posts.service';
+import { FileUploadService } from './services/file-upload.service';
+import { Post } from './interfaces/post';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +18,11 @@ export class AppComponent implements OnInit {
     content: new FormControl(null, Validators.required),
   });
   image: File;
+  imageURL: string;
 
   posts: Observable<any>;
 
-  constructor(private pS: PostsService) {}
+  constructor(private pS: PostsService, private upS: FileUploadService) {}
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
@@ -27,17 +30,25 @@ export class AppComponent implements OnInit {
 
   handleFile(event) {
     this.image = event;
+    console.log(this.image.type);
   }
 
   onSubmit() {
-    const newPost: Post = {
-      ...this.post.value, // Get information from the form
-      postedBy: '000000', // TODO: replace this with the UID of the authenticated user
-      postedAt: new Date() // Current date
+    const uploader = this.upS.uploadImageForPost(this.image);
+    const post: Post = {
+      ...this.post.value
     };
-    this.pS.createPost(newPost)
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+    uploader.task.percentageChanges().subscribe(progress => console.log(progress));
+    uploader.task.snapshotChanges().pipe(
+      finalize(() => {
+        uploader.ref.getDownloadURL().subscribe(url => {
+          post.image = url;
+          this.pS.createPost(post)
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+        });
+      })
+    ).subscribe();
   }
 
 }
