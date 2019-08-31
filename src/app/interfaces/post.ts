@@ -6,8 +6,7 @@ export interface Post {
   postedBy: string;
   postedAt: Date;
   content: string;
-  images?: string[];
-  replies?: string[];
+  image?: string;
   ref?: DocumentReference;
   isAgeLimited?: boolean;
 }
