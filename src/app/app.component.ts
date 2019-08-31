@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from './interfaces/post';
 import { Observable } from 'rxjs';
 import { PostsService } from './services/posts.service';
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit {
 
   posts: Observable<any>;
 
-  constructor(private db: AngularFirestore, private pS: PostsService) {}
+  constructor(private pS: PostsService) {}
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
