@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { Post } from './interfaces/post';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('form', { static: false }) form: ElementRef;
   title = 'washr';
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
@@ -41,13 +42,18 @@ export class AppComponent implements OnInit {
         uploader.ref.getDownloadURL().subscribe(url => {
           post.image = url;
           this.pS.createPost(post)
-            .then(data => {
-              this.post.reset();
-            }) // TODO: handle resolving normally in a less dev-y way
+            .then(() => {
+              this.form.nativeElement.reset();
+            })
             .catch(err => console.log(err)); // TODO: handle errors in a less dev-y way
         });
       })
     ).subscribe();
+  }
+
+
+  reset() {
+    this.form.nativeElement.reset();
   }
 
 }
