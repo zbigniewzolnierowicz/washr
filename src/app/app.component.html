@@ -8,7 +8,6 @@
 </form>
 <div class="preview">
   <h1>{{ post.value.title }}</h1>
-  <p>{{ image | json }}</p>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
 <div class="posts">
