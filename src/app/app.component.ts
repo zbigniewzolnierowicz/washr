@@ -35,8 +35,9 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     const uploader = this.upS.uploadImageForPost(this.image);
-    const post: Post = {
-      ...this.post.value
+      ...this.post.value,
+      postedAt: new Date(), // Get the date right now
+      postedBy: '00000000' // TODO: Replace with UID of the authenticated user
     };
     uploader.task.percentageChanges().subscribe(progress => console.log(progress));
     uploader.task.snapshotChanges().pipe(
