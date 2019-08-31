@@ -14,8 +14,8 @@ export class AppComponent implements OnInit {
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
-    image: new FormControl(null)
   });
+  image: File;
 
   posts: Observable<any>;
 
@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
+  }
+
+  handleFile(event) {
+    this.image = event;
   }
 
   onSubmit() {
