@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
+    isNSFW: new FormControl(false)
   });
   image: File;
   imageURL: string;
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
     const uploader = this.upS.uploadImageForPost(this.image);
     const post: Post = { // Object to be posted as a new post
       ...this.post.value,
-      postedAt: new Date(), // Get the date right now
+      postedAt: new Date(), // Get the date right
       postedBy: '00000000' // TODO: Replace with UID of the authenticated user
     };
     uploader.task.percentageChanges().subscribe(progress => console.log(progress));

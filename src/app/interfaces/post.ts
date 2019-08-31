@@ -8,5 +8,5 @@ export interface Post {
   content: string;
   image?: string;
   ref?: DocumentReference;
-  isAgeLimited?: boolean;
+  isNSFW?: boolean;
 }
