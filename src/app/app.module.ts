@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 import { InViewportModule } from 'ng-in-viewport';
 
 @NgModule({
@@ -11,9 +14,11 @@ import { InViewportModule } from 'ng-in-viewport';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule, // Module for new post and new comment forms
     InViewportModule, // Module for checking if component is in viewport
     AngularFireModule.initializeApp(environment.firebaseConfig), // Firebase basic module
+    AngularFirestoreModule // Firestore module
   ],
   providers: [],
   bootstrap: [AppComponent]
