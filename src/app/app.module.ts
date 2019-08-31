@@ -8,11 +8,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MarkdownPipe // Pipe for Markdown parsing
+    MarkdownPipe,
+    UploadComponent // Pipe for Markdown parsing
   ],
   imports: [
     BrowserModule,
