@@ -1,2 +1,19 @@
 <h1>Welcome to {{ title }}</h1>
+<form [formGroup]="post" (ngSubmit)="onSubmit()">
+
+  <label>Title: <input type="text" formControlName="title"></label>
+  <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
+
+  <!--<app-file-upload formControlName="image" [progress]="progress"></app-file-upload>-->
+
+  <button type="submit">Send</button>
+</form>
+<div class="preview">
+  <h1>{{ post.value.title }}</h1>
+  <div class="content" [innerHTML]="post.value.content | markdown"></div>
+</div>
+<div class="posts" *ngFor="let post of posts | async">
+  <h1>{{ post.title }}</h1>
+  <div class="content" [innerHTML]="post.content | markdown"></div>
+</div>
 <router-outlet></router-outlet>
