@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     const uploader = this.upS.uploadImageForPost(this.image);
+    const post: Post = { // Object to be posted as a new post
       ...this.post.value,
       postedAt: new Date(), // Get the date right now
       postedBy: '00000000' // TODO: Replace with UID of the authenticated user
