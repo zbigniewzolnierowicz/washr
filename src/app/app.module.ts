@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
@@ -22,7 +23,8 @@ import { UploadComponent } from './components/upload/upload.component';
     ReactiveFormsModule, // Module for new post and new comment forms
     InViewportModule, // Module for checking if component is in viewport
     AngularFireModule.initializeApp(environment.firebaseConfig), // Firebase basic module
-    AngularFirestoreModule // Firestore module
+    AngularFirestoreModule, // Firestore module
+    AngularFireStorageModule // Firebase Storage module
   ],
   providers: [],
   bootstrap: [AppComponent]
