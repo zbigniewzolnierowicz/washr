@@ -16,10 +16,9 @@ export class AppComponent implements OnInit {
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
-    isNSFW: new FormControl(false)
+    isNSFW: new FormControl(false),
+    image: new FormControl(null)
   });
-  image: File;
-  imageURL: string;
 
   posts: Observable<any>;
 
@@ -29,13 +28,8 @@ export class AppComponent implements OnInit {
     this.posts = this.pS.getAllPosts;
   }
 
-  handleFile(event) {
-    this.image = event;
-    console.log(this.image.type);
-  }
-
   onSubmit() {
-    const uploader = this.upS.uploadImageForPost(this.image);
+    const uploader = this.upS.uploadImageForPost(this.post.value.image);
     const post: Post = { // Object to be posted as a new post
       ...this.post.value,
       postedAt: new Date(), // Get the date right
@@ -47,7 +41,9 @@ export class AppComponent implements OnInit {
         uploader.ref.getDownloadURL().subscribe(url => {
           post.image = url;
           this.pS.createPost(post)
-            .then(data => console.log(data)) // TODO: handle resolving normally in a less dev-y way
+            .then(data => {
+              this.post.reset();
+            }) // TODO: handle resolving normally in a less dev-y way
             .catch(err => console.log(err)); // TODO: handle errors in a less dev-y way
         });
       })
