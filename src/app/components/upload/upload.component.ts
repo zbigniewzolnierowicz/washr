@@ -32,7 +32,7 @@ export class UploadComponent implements ControlValueAccessor {
     console.log('called writeValue');
     // clear file input
     this.host.nativeElement.value = '';
-    this.file = null;
+    this.file = value;
   }
 
   // tslint:disable-next-line: ban-types
