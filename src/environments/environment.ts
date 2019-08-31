@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'washrsocial.firebaseapp.com',
     databaseURL: 'https://washrsocial.firebaseio.com',
     projectId: 'washrsocial',
-    storageBucket: '',
+    storageBucket: 'washrsocial.appspot.com',
     messagingSenderId: '942033656139',
     appId: '1:942033656139:web:78733e0bdf695f2a'
   }
