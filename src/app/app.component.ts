@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
         uploader.ref.getDownloadURL().subscribe(url => {
           post.image = url;
           this.pS.createPost(post)
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+            .then(data => console.log(data)) // TODO: handle resolving normally in a less dev-y way
+            .catch(err => console.log(err)); // TODO: handle errors in a less dev-y way
         });
       })
     ).subscribe();
