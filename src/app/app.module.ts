@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MarkdownPipe // Pipe for Markdown parsing
   ],
   imports: [
     BrowserModule,
