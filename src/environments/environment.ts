@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyCv-yK-61uyr1gdrIV107TDJCiqn1csy_Y',
+    authDomain: 'washrsocial.firebaseapp.com',
+    databaseURL: 'https://washrsocial.firebaseio.com',
+    projectId: 'washrsocial',
+    storageBucket: '',
+    messagingSenderId: '942033656139',
+    appId: '1:942033656139:web:78733e0bdf695f2a'
+  }
 };
 
 /*
