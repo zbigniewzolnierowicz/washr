@@ -1,4 +1,4 @@
-import { DocumentReference } from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/firestore/interfaces';
 
 export interface Post {
   id?: string;
