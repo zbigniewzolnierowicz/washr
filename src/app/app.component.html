@@ -15,6 +15,7 @@
     <h1>{{ post.title }}</h1>
     <img [src]="post.image" [alt]="post.title" *ngIf="post.image">
     <div class="content" [innerHTML]="post.content | markdown"></div>
+    <p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
   </div>
 </div>
 <router-outlet></router-outlet>
