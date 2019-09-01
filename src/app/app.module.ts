@@ -10,12 +10,14 @@ import { environment } from 'src/environments/environment';
 import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
 import { UploadComponent } from './components/upload/upload.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MarkdownPipe,
-    UploadComponent // Pipe for Markdown parsing
+    MarkdownPipe, // Pipe for Markdown parsing
+    UploadComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
