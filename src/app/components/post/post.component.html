@@ -2,3 +2,11 @@
 <img [src]="post.image" [alt]="post.title" *ngIf="post.image">
 <div class="content" [innerHTML]="post.content | markdown"></div>
 <p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
+<h2>Add a reply</h2>
+<form [formGroup]="reply" (ngSubmit)="onSubmit()" #form>
+  <label>Title: <input type="text" formControlName="title"></label>
+  <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
+  <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
+  <app-upload formControlName="image"></app-upload>
+  <button type="submit">Send</button>
+</form>
