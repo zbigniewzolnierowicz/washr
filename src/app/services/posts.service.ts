@@ -22,6 +22,17 @@ export class PostsService {
     );
   }
 
+  getCommentsForPost(post: Post) {
+    return this.db.doc(post.ref).collection('comments').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Post;
+        const id = a.payload.doc.id;
+        const ref = a.payload.doc.ref;
+        return { id, ref, ...data };
+      }))
+    );
+  }
+
   createPost(post: Post) {
     return new Promise((resolve, reject) => {
       this.db.collection<Post>('posts').add(post) // Add a new post to the posts collection in Firebase
