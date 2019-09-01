@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
+import { Comment } from '../interfaces/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +31,16 @@ export class PostsService {
   }
 
   /*
-    TODO: Make a method that adds a comment,
-    increments the comment count in the Post document
-    and adds a string to the comments array in the User document
+    TODO: Make the method add a string to the comments array in the User document
   */
+
+  addCommentToPost(post: Post, comment: Comment) {
+    return new Promise((resolve, reject) => { // Add a new comment to the comments subcollection of a post
+      post.ref.collection('comments').add(comment)
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  }
 
   /*
     TODO: Make the same method as above, but with likes.
