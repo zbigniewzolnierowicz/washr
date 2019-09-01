@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators';
 import { Comment } from 'src/app/interfaces/comment';
 import { PostsService } from 'src/app/services/posts.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -20,10 +21,12 @@ export class PostComponent implements OnInit {
     isNSFW: new FormControl(false),
     image: new FormControl(null)
   });
+  replies: Observable<any>;
 
   constructor(private pS: PostsService, private upS: FileUploadService) { }
 
   ngOnInit() {
+    this.replies = this.pS.getCommentsForPost(this.post);
   }
 
   onSubmit() {

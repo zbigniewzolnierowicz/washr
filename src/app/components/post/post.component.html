@@ -2,6 +2,8 @@
 <img [src]="post.image" [alt]="post.title" *ngIf="post.image">
 <div class="content" [innerHTML]="post.content | markdown"></div>
 <p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
+<h2>Replies</h2>
+<p *ngFor="let reply of replies | async">{{ reply.content }}</p>
 <h2>Add a reply</h2>
 <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form>
   <label>Title: <input type="text" formControlName="title"></label>
