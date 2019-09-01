@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
     isNSFW: new FormControl(false),
     image: new FormControl(null)
   });
-  replies: Observable<any>;
+  replies: Observable<Comment[]>;
 
   constructor(private pS: PostsService, private upS: FileUploadService) { }
 
