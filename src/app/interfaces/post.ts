@@ -9,4 +9,5 @@ export interface Post {
   image?: string;
   ref?: DocumentReference;
   isNSFW?: boolean;
+  commentCount: number;
 }
