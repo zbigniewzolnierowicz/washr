@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
 import { Comment } from '../interfaces/comment';
+import { firestore } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,9 @@ export class PostsService {
   addCommentToPost(post: Post, comment: Comment) {
     return new Promise((resolve, reject) => { // Add a new comment to the comments subcollection of a post
       post.ref.collection('comments').add(comment)
-        .then(data => resolve(data))
+        .then(data => {
+          this.db.doc(`users/${post.postedBy}`).update({ comments: firestore.FieldValue.arrayUnion(data.id) }).then(() => resolve(data));
+        })
         .catch(err => reject(err));
     });
   }
