@@ -6,6 +6,7 @@ import { Comment } from 'src/app/interfaces/comment';
 import { PostsService } from 'src/app/services/posts.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-post',
@@ -24,7 +25,7 @@ export class PostComponent implements OnInit {
   replies: Observable<Comment[]>;
   error: string;
 
-  constructor(private pS: PostsService, private upS: FileUploadService) { }
+  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
@@ -43,7 +44,7 @@ export class PostComponent implements OnInit {
       ...this.reply.value,
       commentCount: 0,
       postedAt: new Date(), // Get the date right
-      postedBy: '00000000' // TODO: Replace with UID of the authenticated user
+      postedBy: this.afAuth.auth.currentUser.uid
     };
     if (this.reply.value.image != null) {
       uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
