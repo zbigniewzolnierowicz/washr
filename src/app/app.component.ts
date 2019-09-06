@@ -14,6 +14,7 @@ import { Post } from './interfaces/post';
 export class AppComponent implements OnInit {
   @ViewChild('form', { static: false }) form: ElementRef;
   title = 'washr';
+  error: string;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
+  }
+
+  closeError() {
+    this.error = '';
   }
 
   onSubmit() {
@@ -46,7 +51,7 @@ export class AppComponent implements OnInit {
             .then(() => {
               this.form.nativeElement.reset(); // Reset the upload form
             })
-            .catch(err => console.log(err)); // TODO: handle errors in a less dev-y way
+            .catch(err => this.error = err);
         });
       })
     ).subscribe();

@@ -22,11 +22,16 @@ export class PostComponent implements OnInit {
     image: new FormControl(null)
   });
   replies: Observable<Comment[]>;
+  error: string;
 
   constructor(private pS: PostsService, private upS: FileUploadService) { }
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
+  }
+
+  closeError() {
+    this.error = '';
   }
 
   onSubmit() {
@@ -46,7 +51,7 @@ export class PostComponent implements OnInit {
             .then(() => {
               this.replyForm.nativeElement.reset(); // Reset the upload form
             })
-            .catch(err => console.log(err)); // TODO: handle errors in a less dev-y way
+            .catch(err => this.error = err);
         });
       })
     ).subscribe();
