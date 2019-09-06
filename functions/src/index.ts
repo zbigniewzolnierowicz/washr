@@ -6,6 +6,7 @@ const db = firestore();
 
 export let aggregateComments: functions.CloudFunction<any>;
 export let addCommentToUserArray: functions.CloudFunction<any>;
+export let deleteCommentFromUserArray: functions.CloudFunction<any>;
 export let generateUserDocument: functions.CloudFunction<any>;
 export let deleteUserDocument: functions.CloudFunction<any>;
 aggregateComments = functions.firestore
@@ -44,6 +45,27 @@ aggregateComments = functions.firestore
         console.log(`Updating user ${commentData.postedBy} with comment ID ${commentSnapshot.id}`)
         return userRef.update({
           comments: firestore.FieldValue.arrayUnion(commentSnapshot.id)
+        });
+      } catch (err) {
+        console.error(err);
+        return err;
+      }
+    });
+
+  deleteCommentFromUserArray = functions.firestore
+    .document('posts/{postId}/comments/{commentId}')
+    .onDelete(async (deleted, context) => {
+      try {
+        const commentSnapshot = await deleted;
+        let commentData: any;
+        if (commentSnapshot.data() === undefined) {
+          commentData = await commentSnapshot.data();
+        } else {
+          throw new Error(('Undefined comment'));
+        }
+        const userRef = db.doc(`users/${commentData.postedBy}`);
+        return userRef.update({
+          comments: firestore.FieldValue.arrayRemove(commentSnapshot.id)
         });
       } catch (err) {
         console.error(err);
