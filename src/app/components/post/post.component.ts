@@ -6,6 +6,7 @@ import { Comment } from 'src/app/interfaces/comment';
 import { PostsService } from 'src/app/services/posts.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-post',
@@ -24,7 +25,7 @@ export class PostComponent implements OnInit {
   replies: Observable<Comment[]>;
   error: string;
 
-  constructor(private pS: PostsService, private upS: FileUploadService) { }
+  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
@@ -35,25 +36,30 @@ export class PostComponent implements OnInit {
   }
 
   onSubmit() {
-    const uploader = this.upS.uploadImageForPost(this.reply.value.image);
-    const comment: Comment = { // Object to be posted as a new post
+    let uploader: { task: any; ref: any; };
+    if (this.reply.value.image != null) {
+      uploader = this.upS.uploadImageForPost(this.reply.value.image);
+    }
+    const comment: Post = { // Object to be posted as a new reply
       ...this.reply.value,
       commentCount: 0,
       postedAt: new Date(), // Get the date right
-      postedBy: '00000000' // TODO: Replace with UID of the authenticated user
+      postedBy: this.afAuth.auth.currentUser.uid
     };
-    uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
-    uploader.task.snapshotChanges().pipe(
+    if (this.reply.value.image != null) {
+      uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
+      uploader.task.snapshotChanges().pipe(
       finalize(() => {
         uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
           comment.image = url; // Append it to the object responsible for being uploaded
           this.pS.addCommentToPost(this.post, comment) // Create a new post
-            .then(() => {
-              this.replyForm.nativeElement.reset(); // Reset the upload form
-            })
             .catch(err => this.error = err);
         });
-      })
-    ).subscribe();
+      })).subscribe();
+    } else {
+      this.pS.addCommentToPost(this.post, comment) // Create a new post
+        .catch(err => this.error = err);
+    }
+    this.replyForm.nativeElement.reset();
   }
 }

@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators';
 import { PostsService } from './services/posts.service';
 import { FileUploadService } from './services/file-upload.service';
 import { Post } from './interfaces/post';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
 
   posts: Observable<any>;
 
-  constructor(private pS: PostsService, private upS: FileUploadService) {}
+  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) {}
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
@@ -34,27 +35,35 @@ export class AppComponent implements OnInit {
     this.error = '';
   }
 
-  onSubmit() {
-    const uploader = this.upS.uploadImageForPost(this.post.value.image);
-    const post: Post = { // Object to be posted as a new post
-      ...this.post.value,
-      commentCount: 0,
-      postedAt: new Date(), // Get the date right
-      postedBy: '00000000' // TODO: Replace with UID of the authenticated user
-    };
-    uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
-    uploader.task.snapshotChanges().pipe(
-      finalize(() => {
-        uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
-          post.image = url; // Append it to the object responsible for being uploaded
-          this.pS.createPost(post) // Create a new post
-            .then(() => {
-              this.form.nativeElement.reset(); // Reset the upload form
-            })
-            .catch(err => this.error = err);
-        });
-      })
-    ).subscribe();
+  async onSubmit() {
+    if (this.afAuth.auth.currentUser != null) {
+      let uploader: { task: any; ref: any; };
+      if (this.post.value.image != null) {
+        uploader = this.upS.uploadImageForPost(this.post.value.image);
+      }
+      const post: Post = { // Object to be posted as a new post
+        ...this.post.value,
+        commentCount: 0,
+        postedAt: new Date(), // Get the date right
+        postedBy: this.afAuth.auth.currentUser.uid
+      };
+      if (this.post.value.image != null) {
+        uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
+        uploader.task.snapshotChanges().pipe(
+        finalize(() => {
+          uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
+            post.image = url; // Append it to the object responsible for being uploaded
+            this.pS.createPost(post) // Create a new post
+              .catch(err => this.error = err);
+          });
+        })).subscribe();
+      } else {
+        this.pS.createPost(post) // Create a new post
+          .catch(err => this.error = err);
+      }
+      this.form.nativeElement.reset();
+    } else {
+      this.error = 'You need to log in!';
+    }
   }
-
 }

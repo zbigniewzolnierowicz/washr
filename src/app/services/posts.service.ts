@@ -42,8 +42,6 @@ export class PostsService {
     });
   }
 
-  // TODO: Make the method add a string to the comments array in the User document
-
   addCommentToPost(post: Post, comment: Comment) {
     return new Promise((resolve, reject) => { // Add a new comment to the comments subcollection of a post
       post.ref.collection('comments').add(comment)
