@@ -55,4 +55,8 @@ export class PostsService {
   }
 
   // TODO: Make the same method as above, but with likes.
+  // TODO: Add a method for deleting posts
+  // TODO: Add a method for deleting comments
+  // TODO: Add a method for editing posts
+  // TODO: Add a method for editing comments
 }
