@@ -52,19 +52,14 @@ export class AppComponent implements OnInit {
         uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
           post.image = url; // Append it to the object responsible for being uploaded
           this.pS.createPost(post) // Create a new post
-            .then(() => {
-              this.form.nativeElement.reset(); // Reset the upload form
-            })
             .catch(err => this.error = err);
         });
       })).subscribe();
     } else {
       this.pS.createPost(post) // Create a new post
-        .then(() => {
-          this.form.nativeElement.reset(); // Reset the upload form
-        })
         .catch(err => this.error = err);
     }
+    this.form.nativeElement.reset();
   }
 
 }
