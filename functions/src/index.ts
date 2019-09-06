@@ -3,13 +3,9 @@ import { initializeApp, firestore } from 'firebase-admin';
 
 initializeApp();
 const db = firestore();
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+
 export let aggregateComments: functions.CloudFunction<any>;
+export let addCommentToUserArray: functions.CloudFunction<any>;
 export let generateUserDocument: functions.CloudFunction<any>;
 export let deleteUserDocument: functions.CloudFunction<any>;
 aggregateComments = functions.firestore
@@ -29,6 +25,31 @@ aggregateComments = functions.firestore
       return err;
     }
   });
+
+  addCommentToUserArray = functions.firestore
+    .document('posts/{postId}/comments/{commentId}')
+    .onWrite(async (_, context) => {
+      const postId = context.params.postId
+      const commentId = context.params.commentId;
+      const commentRef = db.doc(`posts/${postId}`).collection('comments').doc(commentId);
+      try {
+        const commentSnapshot = await commentRef.get();
+        let commentData: any;
+        if (await commentSnapshot.data() === undefined) {
+          throw new Error(('Undefined comment'));
+        } else {
+          commentData = await commentSnapshot.data();
+        }
+        const userRef = await db.doc(`users/${commentData.postedBy}`);
+        console.log(`Updating user ${commentData.postedBy} with comment ID ${commentSnapshot.id}`)
+        return userRef.update({
+          comments: firestore.FieldValue.arrayUnion(commentSnapshot.id)
+        });
+      } catch (err) {
+        console.error(err);
+        return err;
+      }
+    });
 
   generateUserDocument = functions.auth.user().onCreate(user => {
     const userData = {
