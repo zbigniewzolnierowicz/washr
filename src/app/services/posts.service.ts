@@ -42,9 +42,7 @@ export class PostsService {
     });
   }
 
-  /*
-    TODO: Make the method add a string to the comments array in the User document
-  */
+  // TODO: Make the method add a string to the comments array in the User document
 
   addCommentToPost(post: Post, comment: Comment) {
     return new Promise((resolve, reject) => { // Add a new comment to the comments subcollection of a post
@@ -56,7 +54,5 @@ export class PostsService {
     });
   }
 
-  /*
-    TODO: Make the same method as above, but with likes.
-  */
+  // TODO: Make the same method as above, but with likes.
 }
