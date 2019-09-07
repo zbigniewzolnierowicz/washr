@@ -14,7 +14,6 @@
   <button (click)="closeError()">Close</button>
 </div>
 <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form>
-  <label>Title: <input type="text" formControlName="title"></label>
   <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
   <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
   <app-upload formControlName="image"></app-upload>

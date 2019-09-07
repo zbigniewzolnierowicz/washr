@@ -17,7 +17,6 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
   @ViewChild('reply', { static: false }) replyForm: ElementRef;
   reply = new FormGroup({
-    title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
     isNSFW: new FormControl(false),
     image: new FormControl(null)
