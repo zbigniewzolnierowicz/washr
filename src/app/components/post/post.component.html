@@ -7,7 +7,6 @@
   <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
 </div>
 <h2>Add a reply</h2>
-<button (click)="this.error = 'Error triggered!'">Trigger error</button>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>

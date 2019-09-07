@@ -12,7 +12,6 @@
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>
 </div>
-<button (click)="this.error = 'Error triggered!'">Trigger error</button>
 <div class="preview">
   <h1>{{ post.value.title }}</h1>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
