@@ -12,6 +12,7 @@
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>
 </div>
+<progress [value]="progress || 0" max="100"></progress>
 <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form>
   <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
   <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>

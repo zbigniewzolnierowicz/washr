@@ -23,6 +23,7 @@ export class PostComponent implements OnInit {
   });
   replies: Observable<Comment[]>;
   error: string;
+  progress: number = null;
 
   constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) { }
 
@@ -46,7 +47,11 @@ export class PostComponent implements OnInit {
       postedBy: this.afAuth.auth.currentUser.uid
     };
     if (this.reply.value.image != null) {
-      uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
+      uploader.task.percentageChanges()
+      .pipe(
+        finalize(() => this.progress = null)
+      )
+      .subscribe(progress => this.progress = progress); // Get the percentage status of the image upload
       uploader.task.snapshotChanges().pipe(
       finalize(() => {
         uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
