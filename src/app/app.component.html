@@ -1,6 +1,6 @@
 <h1>Welcome to {{ title }}</h1>
 <app-login></app-login>
-<progress [value]="progress || 0" max="100"></progress>
+<progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
   <label>Title: <input type="text" formControlName="title"></label>
   <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
