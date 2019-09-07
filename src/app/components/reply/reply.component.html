@@ -1,0 +1,4 @@
+<img *ngIf="content.image" [src]="content.image" [alt]="content.content">
+<div class="content" [innerHTML]="content.content | markdown"></div>
+<p>Posted by: {{ content.postedBy }}</p>
+<p>Posted at: {{ content.postedAt | date }}</p>

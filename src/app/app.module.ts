@@ -13,6 +13,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { PostComponent } from './components/post/post.component';
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ReplyComponent } from './components/reply/reply.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     MarkdownPipe, // Pipe for Markdown parsing
     UploadComponent,
     PostComponent,
-    LoginComponent
+    LoginComponent,
+    ReplyComponent
   ],
   imports: [
     BrowserModule,

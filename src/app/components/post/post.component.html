@@ -3,9 +3,8 @@
 <div class="content" [innerHTML]="post.content | markdown"></div>
 <p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
 <h2>Replies</h2>
-<div class="reply" *ngFor="let reply of replies | async">
-  <img [src]="reply.image" [alt]="reply.content" *ngIf="reply.image">
-  <div [innerHTML]="reply.content | markdown"></div>
+<div class="replies">
+  <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
 </div>
 <h2>Add a reply</h2>
 <button (click)="this.error = 'Error triggered!'">Trigger error</button>
