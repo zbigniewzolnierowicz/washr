@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     isNSFW: new FormControl(false),
     image: new FormControl(null)
   });
+  progress: number = null;
 
   posts: Observable<any>;
 
@@ -48,7 +49,11 @@ export class AppComponent implements OnInit {
         postedBy: this.afAuth.auth.currentUser.uid
       };
       if (this.post.value.image != null) {
-        uploader.task.percentageChanges().subscribe(progress => console.log(progress)); // Get the percentage status of the image upload
+        uploader.task.percentageChanges()
+        .pipe(
+          finalize(() => this.progress = null)
+        )
+        .subscribe(progress => this.progress = progress); // Get the percentage status of the image upload
         uploader.task.snapshotChanges().pipe(
         finalize(() => {
           uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
