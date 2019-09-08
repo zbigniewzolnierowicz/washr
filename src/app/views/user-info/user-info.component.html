@@ -1,4 +1,4 @@
-<div class="userInfo" *ngIf="userInfo">
+<div class="userInfo" *ngIf="userInfo | async as userInfo">
   <p>User name: {{ userInfo.displayName }}</p>
   <p>Bio: {{ userInfo.bio }}</p>
   <div class="avatar">
