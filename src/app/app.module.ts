@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirePerformanceModule } from '@angular/fire/performance';
 import { environment } from 'src/environments/environment';
 import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
 import { UploadComponent } from './components/upload/upload.component';
 import { PostComponent } from './components/post/post.component';
 import { LoginComponent } from './components/login/login.component';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ReplyComponent } from './components/reply/reply.component';
 import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
@@ -36,7 +37,8 @@ import { UserInfoComponent } from './views/user-info/user-info.component';
     AngularFireModule.initializeApp(environment.firebaseConfig), // Firebase basic module
     AngularFirestoreModule, // Firestore module
     AngularFireAuthModule, // Firebase Auth module
-    AngularFireStorageModule // Firebase Storage module
+    AngularFireStorageModule, // Firebase Storage module
+    AngularFirePerformanceModule // Firebase Performance module
   ],
   providers: [],
   bootstrap: [AppComponent]
