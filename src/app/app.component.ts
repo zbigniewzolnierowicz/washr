@@ -24,13 +24,9 @@ export class AppComponent implements OnInit {
   });
   progress: number = null;
 
-  posts: Observable<any>;
-
   constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) {}
 
-  ngOnInit() {
-    this.posts = this.pS.getAllPosts;
-  }
+  ngOnInit() {}
 
   closeError() {
     this.error = '';

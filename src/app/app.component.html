@@ -16,7 +16,4 @@
   <h1>{{ post.value.title }}</h1>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
-<div class="posts">
-  <app-post *ngFor="let post of posts | async" [post]="post"></app-post>
-</div>
 <router-outlet></router-outlet>
