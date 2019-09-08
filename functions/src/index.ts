@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import { initializeApp, firestore } from 'firebase-admin';
+import {firestore, initializeApp} from 'firebase-admin';
 
 initializeApp();
 const db = firestore();
@@ -22,7 +22,7 @@ aggregateComments = functions.firestore
     try {
       const commentsSnapshot = await postRef.collection('comments').orderBy('postedAt', 'desc').get();
       const commentCount = commentsSnapshot.size;
-      return postRef.update({commentCount});
+      return await postRef.update({commentCount});
     } catch (err) {
       console.error(err);
       return err;
@@ -32,7 +32,7 @@ aggregateComments = functions.firestore
   addCommentToUserArray = functions.firestore
     .document('posts/{postId}/comments/{commentId}')
     .onWrite(async (_, context) => {
-      const postId = context.params.postId
+      const postId = context.params.postId;
       const commentId = context.params.commentId;
       const commentRef = db.doc(`posts/${postId}`).collection('comments').doc(commentId);
       try {
@@ -44,7 +44,7 @@ aggregateComments = functions.firestore
           commentData = await commentSnapshot.data();
         }
         const userRef = await db.doc(`users/${commentData.postedBy}`);
-        console.log(`Updating user ${commentData.postedBy} with comment ID ${commentSnapshot.id}`)
+        console.log(`Updating user ${commentData.postedBy} with comment ID ${commentSnapshot.id}`);
         return userRef.update({
           comments: firestore.FieldValue.arrayUnion(commentSnapshot.id)
         });
@@ -66,7 +66,7 @@ aggregateComments = functions.firestore
           throw new Error(('Undefined comment'));
         }
         const userRef = db.doc(`users/${commentData.postedBy}`);
-        return userRef.update({
+        return await userRef.update({
           comments: firestore.FieldValue.arrayRemove(commentSnapshot.id)
         });
       } catch (err) {
@@ -84,19 +84,19 @@ aggregateComments = functions.firestore
       bio: '',
       followerCount: 0,
       following: []
-    }
+    };
     console.log(userData);
 
     db.collection('users').doc(user.uid).create(userData)
       .then(data => { return data })
       .catch(err => { return err });
-  })
+  });
 
   deleteUserDocument = functions.auth.user().onDelete(user => {
     db.collection('users').doc(user.uid).delete()
       .then(data => { return data })
       .catch(err => { return err });
-  })
+  });
 
   addUserDataToComment = functions.firestore.document('posts/{postId}/comments/{commentId}')
   .onWrite(async change => {
@@ -105,7 +105,7 @@ aggregateComments = functions.firestore
       const userRef = await db.doc(`users/${beforeData.postedBy}`);
       const userDocument = await userRef.get();
       const userData = await userDocument.data() || { displayName: null, photoURL: null };
-      return change.after.ref.update({
+      return await change.after.ref.update({
         userData: {
           userID: beforeData.postedBy,
           userName: userData.displayName,
@@ -117,7 +117,7 @@ aggregateComments = functions.firestore
       return error;
     }
 
-  })
+  });
 
   addUserDataToPost = functions.firestore.document('posts/{postId}')
   .onWrite(async change => {
@@ -126,7 +126,7 @@ aggregateComments = functions.firestore
       const userRef = await db.doc(`users/${beforeData.postedBy}`);
       const userDocument = await userRef.get();
       const userData = await userDocument.data() || { displayName: null, photoURL: null };
-      return change.after.ref.update({
+      return await change.after.ref.update({
         userData: {
           userID: beforeData.postedBy,
           userName: userData.displayName,
@@ -138,4 +138,4 @@ aggregateComments = functions.firestore
       return error;
     }
 
-  })
+  });
