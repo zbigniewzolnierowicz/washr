@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ReplyComponent } from './components/reply/reply.component';
 import { GlobalComponent } from './views/postList/global/global.component';
+import { UserInfoComponent } from './views/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { GlobalComponent } from './views/postList/global/global.component';
     PostComponent,
     LoginComponent,
     ReplyComponent,
-    GlobalComponent
+    GlobalComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

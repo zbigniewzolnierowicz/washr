@@ -1,4 +1,6 @@
-<h1>Welcome to {{ title }}</h1>
+<header>
+  <h1><a [routerLink]="'/'">Welcome to {{ title }}</a></h1>
+</header>
 <app-login></app-login>
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase';
+import * as firebase from 'firebase';
 import 'firebase/auth';
 
 @Component({
@@ -9,7 +9,7 @@ import 'firebase/auth';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  googleProvider = new auth.GoogleAuthProvider();
+  googleProvider = new firebase.auth.GoogleAuthProvider();
 
   constructor(public afAuth: AngularFireAuth) { }
   login() {

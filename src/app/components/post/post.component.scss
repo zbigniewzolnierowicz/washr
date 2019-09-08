@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  width: 100%;
+  border: 2px solid black;
+  margin: 2vh 2vw;
+}
+
+img {
+  width: 100%;
+  max-height: 30vh;
+  object-fit: scale-down;
+}

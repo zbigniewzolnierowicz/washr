@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { PostsService } from './services/posts.service';
 import { FileUploadService } from './services/file-upload.service';

@@ -1,0 +1,7 @@
+<div class="userInfo" *ngIf="userInfo">
+  <p>User name: {{ userInfo.displayName }}</p>
+  <p>Bio: {{ userInfo.bio }}</p>
+  <div class="avatar">
+    <img [src]="userInfo.photoURL" alt="">
+  </div>
+</div>
