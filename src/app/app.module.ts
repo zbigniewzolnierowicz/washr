@@ -17,6 +17,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
+import { LoginPageComponent } from './views/login-page/login-page.component';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { UserInfoComponent } from './views/user-info/user-info.component';
     LoginComponent,
     ReplyComponent,
     GlobalComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { UserInfoComponent } from './views/user-info/user-info.component';
     AngularFireModule.initializeApp(environment.firebaseConfig), // Firebase basic module
     AngularFirestoreModule, // Firestore module
     AngularFireAuthModule, // Firebase Auth module
+    AngularFireAuthGuardModule, // Firebase Auth Guard module
     AngularFireStorageModule, // Firebase Storage module
     AngularFirePerformanceModule // Firebase Performance module
   ],
