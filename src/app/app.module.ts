@@ -13,7 +13,6 @@ import { MarkdownPipe } from 'src/app/pipes/markdown.pipe';
 import { InViewportModule } from 'ng-in-viewport';
 import { UploadComponent } from './components/upload/upload.component';
 import { PostComponent } from './components/post/post.component';
-import { LoginComponent } from './components/login/login.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
@@ -26,7 +25,6 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     MarkdownPipe, // Pipe for Markdown parsing
     UploadComponent,
     PostComponent,
-    LoginComponent,
     ReplyComponent,
     GlobalComponent,
     UserInfoComponent,

@@ -5,6 +5,7 @@ import { PostsService } from './services/posts.service';
 import { FileUploadService } from './services/file-upload.service';
 import { Post } from './interfaces/post';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   });
   progress: number = null;
 
-  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) {}
+  constructor(private pS: PostsService, private upS: FileUploadService, public afAuth: AngularFireAuth, private router: Router) {}
 
   ngOnInit() {}
 
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut().then(() => this.router.navigate(['login']));
   }
 
   async onSubmit() {
