@@ -31,6 +31,10 @@ export class AppComponent implements OnInit {
     this.error = '';
   }
 
+  logOut() {
+    this.afAuth.auth.signOut();
+  }
+
   async onSubmit() {
     if (this.afAuth.auth.currentUser != null) {
       let uploader: { task: any; ref: any; };
