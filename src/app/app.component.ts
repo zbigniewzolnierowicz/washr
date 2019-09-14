@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   @ViewChild('form', { static: false }) form: ElementRef;
   title = 'washr';
   error: string;
+  isLoggedIn: boolean;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
@@ -26,7 +27,9 @@ export class AppComponent implements OnInit {
 
   constructor(private pS: PostsService, private upS: FileUploadService, public afAuth: AngularFireAuth, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.afAuth.user.subscribe(u => u ? this.isLoggedIn = true : this.isLoggedIn = false);
+  }
 
   closeError() {
     this.error = '';
