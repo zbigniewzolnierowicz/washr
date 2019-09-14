@@ -1,5 +1,25 @@
 :host {
   display: block;
-  height: 100%;
+  height: fit-content;
   width: 100%;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  color: white;
+  background: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em;
+  a {
+    text-decoration: none;
+    &:hover {
+      color: gainsboro;
+    }
+    &:active, &:visited {
+      color: white;
+    }
+  }
 }
