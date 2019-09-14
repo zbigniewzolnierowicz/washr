@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-import 'firebase/auth';
+import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider = new auth.GoogleAuthProvider();
 
   constructor(private afAuth: AngularFireAuth, private router: Router) { }
   logInWithGoogle() {
