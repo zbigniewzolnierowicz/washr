@@ -25,6 +25,7 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin)
   }
   // TODO: Add a detailed thread viewer
+  // TODO: Add a profile editor
 ];
 
 @NgModule({

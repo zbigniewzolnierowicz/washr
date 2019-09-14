@@ -9,4 +9,5 @@ export interface User {
   followerCount?: number;
   following?: string[];
   // TODO: Add an option to toggle whether the user wants to see NSFW content or not
+  // TODO: Add more user details
 }
