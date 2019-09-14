@@ -24,6 +24,7 @@ const routes: Routes = [
     component: UserInfoComponent,
     ...canActivate(redirectUnauthorizedToLogin)
   }
+  // TODO: Add a detailed thread viewer
 ];
 
 @NgModule({
