@@ -16,6 +16,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class PostComponent implements OnInit {
   @Input() post: Post;
   @ViewChild('reply', { static: false }) replyForm: ElementRef;
+  isReply = false;
   reply = new FormGroup({
     content: new FormControl(null, Validators.required),
     isNSFW: new FormControl(false),
@@ -33,6 +34,10 @@ export class PostComponent implements OnInit {
 
   closeError() {
     this.error = '';
+  }
+
+  toggleIsReply() {
+    this.isReply = !this.isReply;
   }
 
   onSubmit() {
