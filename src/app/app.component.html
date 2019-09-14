@@ -6,7 +6,6 @@
     <button (click)="logOut()">Log out</button>
   </section>
 </header>
-<progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
   <label>Title: <input type="text" formControlName="title"></label>
   <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
@@ -14,6 +13,7 @@
   <app-upload formControlName="image"></app-upload>
   <button type="submit">Send</button>
 </form>
+<progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>
