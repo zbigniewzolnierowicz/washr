@@ -1,5 +1,6 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
+  <a [routerLink]="'/timeline'">Move to timeline (because routing is broken)</a>
   <section class="buttons" *ngIf="isLoggedIn">
     <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
     <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>

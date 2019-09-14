@@ -18,6 +18,7 @@ import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     AngularFireStorageModule, // Firebase Storage module
     AngularFirePerformanceModule // Firebase Performance module
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
