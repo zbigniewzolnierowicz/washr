@@ -16,7 +16,7 @@ export class UserInfoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore) {
     this.userInfo = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.db.doc(`users/${params.get('id')}`).valueChanges().pipe(tap(data => console.log(data))))
+      switchMap((params: ParamMap) => this.db.doc(`users/${params.get('id')}`).valueChanges())
     );
   }
 

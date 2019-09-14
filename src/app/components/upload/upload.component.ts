@@ -29,7 +29,6 @@ export class UploadComponent implements ControlValueAccessor {
   }
 
   writeValue(value: null) {
-    console.log('called writeValue');
     // clear file input
     this.host.nativeElement.value = '';
     this.file = value;
