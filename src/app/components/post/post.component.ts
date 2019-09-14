@@ -7,6 +7,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NsfwService } from 'src/app/services/nsfw.service';
 
 @Component({
   selector: 'app-post',
@@ -25,11 +26,13 @@ export class PostComponent implements OnInit {
   replies: Observable<Comment[]>;
   error: string;
   progress: number = null;
+  showNsfw: boolean;
 
-  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth) { }
+  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth, private nsfw: NsfwService) { }
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
+    this.nsfw.nsfwStatus.subscribe(nsfw => this.showNsfw = nsfw);
   }
 
   closeError() {

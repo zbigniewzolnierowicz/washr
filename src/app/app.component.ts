@@ -6,6 +6,7 @@ import { FileUploadService } from './services/file-upload.service';
 import { Post } from './interfaces/post';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { NsfwService } from './services/nsfw.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   title = 'washr';
   error: string;
   isLoggedIn: boolean;
+  showAdult: boolean;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required),
@@ -25,10 +27,16 @@ export class AppComponent implements OnInit {
   });
   progress: number = null;
 
-  constructor(private pS: PostsService, private upS: FileUploadService, public afAuth: AngularFireAuth, private router: Router) {}
+  // tslint:disable-next-line: max-line-length
+  constructor(private pS: PostsService, private upS: FileUploadService, public afAuth: AngularFireAuth, private router: Router, private nsfw: NsfwService) {}
 
   ngOnInit() {
     this.afAuth.user.subscribe(u => u ? this.isLoggedIn = true : this.isLoggedIn = false);
+    this.nsfw.nsfwStatus.subscribe(nsfw => this.showAdult = nsfw);
+  }
+
+  toggleShowAdult() {
+    this.nsfw.toggleNsfw();
   }
 
   closeError() {

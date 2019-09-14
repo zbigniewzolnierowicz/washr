@@ -2,7 +2,7 @@
   <h1>{{ post.title }}</h1>
   <h2>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h2>
 </header>
-<img [src]="post.image" [alt]="post.title" *ngIf="post.image">
+<img [src]="post.image" [alt]="post.title" *ngIf="post.image && post.isNSFW != showNsfw">
 <div class="content" [innerHTML]="post.content | markdown"></div>
 <p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
 <h2>Replies</h2>
