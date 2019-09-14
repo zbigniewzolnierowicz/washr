@@ -1,4 +1,5 @@
 <header>
+  <h1><a [routerLink]="'/'">{{ title }}</a></h1>
   <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
 </header>
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
