@@ -32,7 +32,13 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
-    this.nsfw.nsfwStatus.subscribe(nsfw => this.showNsfw = nsfw);
+    this.nsfw.nsfwStatus.subscribe(nsfw => {
+      if (nsfw === false) {
+        this.post.isNSFW ? this.showNsfw = false : this.showNsfw = true;
+      } else {
+        this.showNsfw = true;
+      }
+    });
   }
 
   closeError() {

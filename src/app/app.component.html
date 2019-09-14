@@ -1,8 +1,10 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
-  <button *ngIf="showAdult" (click)="toggleShowAdult()">This is NSFW</button>
-  <button *ngIf="!showAdult" (click)="toggleShowAdult()">This is SFW</button>
-  <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
+  <section class="buttons" *ngIf="isLoggedIn">
+    <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
+    <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
+    <button (click)="logOut()">Log out</button>
+  </section>
 </header>
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
