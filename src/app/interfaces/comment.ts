@@ -7,4 +7,5 @@ export interface Comment {
   postedAt: Date;
   postedBy: string;
   image?: string;
+  isNSFW?: boolean;
 }
