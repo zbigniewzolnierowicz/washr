@@ -14,8 +14,11 @@ export class LoginPageComponent implements OnInit {
   googleProvider = new firebase.auth.GoogleAuthProvider();
 
   constructor(private afAuth: AngularFireAuth, private router: Router) { }
-  login() {
+  logInWithGoogle() {
     this.afAuth.auth.signInWithPopup(this.googleProvider).then(() => this.router.navigate(['']));
+  }
+  logInWithSomethingElse() {
+    alert('Not implemented yet!');
   }
   ngOnInit() {
   }
