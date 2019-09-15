@@ -61,7 +61,7 @@ export class PostComponent implements OnInit {
     const comment: Post = { // Object to be posted as a new reply
       ...this.reply.value,
       commentCount: 0,
-      postedAt: new Date().getTime(), // Get the current date
+      postedAt: new Date(), // Get the current date
       postedBy: this.afAuth.auth.currentUser.uid
     };
     if (this.reply.value.image != null) {
