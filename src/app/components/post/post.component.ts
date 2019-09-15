@@ -30,6 +30,10 @@ export class PostComponent implements OnInit {
 
   constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth, private nsfw: NsfwService) { }
 
+  get userUID() {
+    return this.afAuth.auth.currentUser.uid;
+  }
+
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
     this.nsfw.nsfwStatus.subscribe(nsfw => {
@@ -79,5 +83,9 @@ export class PostComponent implements OnInit {
         .catch(err => this.error = err);
     }
     this.replyForm.nativeElement.reset();
+  }
+
+  deletePost() {
+    this.pS.deletePost(this.post);
   }
 }

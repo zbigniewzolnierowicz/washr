@@ -54,7 +54,13 @@ export class PostsService {
 
   // TODO: Make the same method as above, but with likes.
   // TODO: Add a method for deleting posts
+  deletePost(post: Post) {
+    console.log(`Deleting post ${post.ref.path}`);
+  }
   // TODO: Add a method for deleting comments
+  deleteCommentFromPost(comment: Comment) {
+    console.log(`Deleting comment ${comment.ref.path}.`);
+  }
   // TODO: Add a method for editing posts
   // TODO: Add a method for editing comments
 }
