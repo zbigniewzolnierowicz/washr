@@ -1,5 +1,5 @@
 <img *ngIf="content.image && showNsfw" [src]="content.image" [alt]="content.content">
 <div class="content" [innerHTML]="content.content | markdown"></div>
 <p>Posted by: {{ content.postedBy }}</p>
-<p>Posted at: {{ content.postedAt | date:'medium' }}</p>
+<p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>
 <!--TODO: Add a badge with user info-->
