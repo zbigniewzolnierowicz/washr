@@ -86,6 +86,6 @@ export class PostComponent implements OnInit {
   }
 
   deletePost() {
-    this.pS.deletePost(this.post);
+    this.pS.delete(this.post).then(() => console.log('Post deleted'));
   }
 }

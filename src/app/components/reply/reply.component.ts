@@ -30,7 +30,7 @@ export class ReplyComponent implements OnInit {
   }
 
   deleteComment() {
-    this.pS.deleteCommentFromPost(this.content);
+    this.pS.delete(this.content).then(() => console.log('Comment deleted.'));
   }
 
 }
