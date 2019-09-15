@@ -1,7 +1,6 @@
 <img *ngIf="content.image && showNsfw" [src]="content.image" [alt]="content.content">
 <div class="content" [innerHTML]="content.content | markdown"></div>
 <div class="buttons" *ngIf="content.postedBy == userUID">
-  <p>This reply belongs to you.</p>
   <button (click)="deleteComment()">Delete reply</button>
 </div>
 <p>Posted by: <a [routerLink]="[ '/userinfo', content.postedBy ]" *ngIf="content.userData">{{ content.userData.userName }}</a></p>

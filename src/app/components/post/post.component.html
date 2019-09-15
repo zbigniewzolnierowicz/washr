@@ -3,7 +3,6 @@
   <h2>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h2>
   <p *ngIf="post.isNSFW && !showNsfw">This post is not safe for work!</p>
   <div class="buttons" *ngIf="post.postedBy == userUID">
-    <p>This post belongs to you.</p>
     <button (click)="deletePost()">Delete post</button>
   </div>
 </header>

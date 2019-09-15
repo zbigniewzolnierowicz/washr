@@ -4,7 +4,7 @@ export interface Comment {
   id?: string;
   ref?: DocumentReference;
   content: string;
-  postedAt: Date;
+  postedAt: FirebaseFirestore.Timestamp;
   postedBy: string;
   image?: string;
   isNSFW?: boolean;

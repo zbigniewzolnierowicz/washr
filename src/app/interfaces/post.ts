@@ -5,7 +5,7 @@ export interface Post {
   ref?: DocumentReference;
   title: string;
   postedBy: string;
-  postedAt: Date;
+  postedAt: FirebaseFirestore.Timestamp;
   content: string;
   image?: string;
   isNSFW?: boolean;
