@@ -1,26 +1,28 @@
 <header>
-  <h1>{{ post.title }}</h1>
-  <h2>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h2>
+  <h2>{{ post.title }}</h2>
+  <h3>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h3>
+  <h3>Posted at: {{ post.postedAt.seconds * 1000 | date:'medium' }}</h3>
   <p *ngIf="post.isNSFW && !showNsfw">This post is not safe for work!</p>
 </header>
 <img [src]="post.image" [alt]="post.title" *ngIf="post.image && showNsfw">
+<img src="../../../assets/NSFW.webp" alt="" *ngIf="post.image && !showNsfw">
 <div class="content" [innerHTML]="post.content | markdown"></div>
-<p *ngIf="post.commentCount">Amount of comments: {{ post.commentCount }}</p>
-<h2>Replies</h2>
+<div class="newReply">
+  <button (click)="toggleIsReply()">Reply</button>
+  <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
+  <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
+    <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
+    <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
+    <app-upload formControlName="image"></app-upload>
+    <button type="submit">Send</button>
+  </form>
+</div>
 <div class="replies">
+  <h2>Replies: {{ post.commentCount }}</h2>
   <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
 </div>
-<h2>Add a reply</h2>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>
 </div>
-<button (click)="toggleIsReply()">Reply</button>
-<progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
-<form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
-  <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
-  <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
-  <app-upload formControlName="image"></app-upload>
-  <button type="submit">Send</button>
-</form>
 <!--TODO: Add a badge with user info-->
