@@ -10,4 +10,9 @@ export interface Comment {
   postedBy: string;
   image?: string;
   isNSFW?: boolean;
+  userData: {
+    userID: string;
+    userName: string;
+    userPhoto: string;
+  };
 }
