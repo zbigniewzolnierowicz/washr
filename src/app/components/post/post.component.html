@@ -1,8 +1,7 @@
 <header>
   <h2>{{ post.title }}</h2>
-  <h3>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h3>
   <app-badge [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
-  <h3>Posted at: {{ post.postedAt.seconds * 1000 | date:'medium' }}</h3>
+  <h3>Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
   <p *ngIf="post.isNSFW && !showNsfw">This post is not safe for work!</p>
   <div class="buttons" *ngIf="post.postedBy == userUID">
     <button (click)="deletePost()">Delete post</button>
@@ -29,4 +28,3 @@
   <p>{{ error }}</p>
   <button (click)="closeError()">Close</button>
 </div>
-<!--TODO: Add a badge with user info-->

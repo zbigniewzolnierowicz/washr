@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  height: 3em;
+  flex-direction: row;
+  width: fit-content;
+  background: gray;
+  border-radius: 12.5% 12.5% 12.5% 12.5% / 50% 50% 50% 50% ;
+}
+a {
+  display: flex;
+  box-sizing: border-box;
+  padding: 2%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  &, &:active, &:hover {
+    color: white;
+  }
+}
+p {
+  margin: 0 1ch;
+}
+img {
+  object-fit: cover;
+  max-height: 100%;
+  clip-path: circle(50% at 50% 50%);
+}
