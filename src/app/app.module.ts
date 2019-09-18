@@ -19,6 +19,7 @@ import { UserInfoComponent } from './views/user-info/user-info.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BadgeComponent } from './components/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ReplyComponent,
     GlobalComponent,
     UserInfoComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    BadgeComponent
     // TODO: Add a component that can zoom in on the image
   ],
   imports: [
