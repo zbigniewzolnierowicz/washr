@@ -30,6 +30,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     GlobalComponent,
     UserInfoComponent,
     LoginPageComponent
+    // TODO: Add a component that can zoom in on the image
   ],
   imports: [
     BrowserModule,
