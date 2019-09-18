@@ -4,8 +4,13 @@
   flex-direction: row;
   width: fit-content;
   background: gray;
-  border-radius: 12.5% 12.5% 12.5% 12.5% / 50% 50% 50% 50% ;
+  border-radius: 12.5% / 50%;
 }
+
+:host.short {
+  border-radius: 25% / 50%;
+}
+
 a {
   display: flex;
   box-sizing: border-box;

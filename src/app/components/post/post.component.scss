@@ -4,7 +4,7 @@
   box-sizing: border-box;
   border: 2px solid black;
   margin: 2vh 0;
-  gap: 1em;
+  gap: 1vh 1vw;
   grid-template-rows: auto auto auto auto auto auto;
   grid-template-columns: 1vw 1fr 3fr 1vw;
   grid-template-areas:
@@ -26,7 +26,7 @@ header {
   display: grid;
   grid-template-columns: 9fr auto;
   grid-template-rows: auto auto;
-  gap: 1em;
+  gap: 1vh 1vw;
   grid-area: header;
   flex-direction: column;
   background: black;
