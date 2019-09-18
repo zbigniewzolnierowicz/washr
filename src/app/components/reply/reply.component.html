@@ -4,5 +4,5 @@
 <div class="buttons" *ngIf="content.postedBy == userUID">
   <button (click)="deleteComment()">Delete reply</button>
 </div>
-<app-badge [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
+<app-badge *ngIf="content.userData.userPhoto" [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
 <p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>
