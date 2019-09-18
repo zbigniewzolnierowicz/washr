@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-user-info',
@@ -14,9 +14,9 @@ export class UserInfoComponent implements OnInit {
   userID: string;
   userInfo: Observable<any>;
 
-  constructor(private route: ActivatedRoute, private db: AngularFirestore) {
+  constructor(private route: ActivatedRoute, private uS: UserDataService) {
     this.userInfo = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.db.doc(`users/${params.get('id')}`).valueChanges())
+      switchMap((params: ParamMap) => this.uS.getUserData(params.get('id')))
     );
   }
 
