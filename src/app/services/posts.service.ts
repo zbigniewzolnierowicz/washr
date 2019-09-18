@@ -14,7 +14,7 @@ export class PostsService {
   constructor(private db: AngularFirestore, private st: AngularFireStorage) {}
 
   get getAllPosts() {
-    return this.db.collection<Post>('posts').snapshotChanges().pipe(
+    return this.db.collection<Post>('posts', query => query.orderBy('postedAt', 'desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Post;
         const id = a.payload.doc.id;
@@ -25,7 +25,7 @@ export class PostsService {
   }
 
   getCommentsForPost(post: Post) {
-    return this.db.doc(post.ref).collection('comments').snapshotChanges().pipe(
+    return this.db.doc(post.ref).collection('comments', query => query.orderBy('postedAt', 'desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Post;
         const id = a.payload.doc.id;
