@@ -1,8 +1,7 @@
 <header>
-  <h2>{{ post.title }}</h2>
+  <h2 class="postTitle">{{ post.title }}</h2>
   <app-badge [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
-  <h3>Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
-  <p *ngIf="post.isNSFW && !showNsfw">This post is not safe for work!</p>
+  <h3 class="timestamp">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
   <div class="buttons" *ngIf="post.postedBy == userUID">
     <button (click)="deletePost()">Delete post</button>
   </div>
