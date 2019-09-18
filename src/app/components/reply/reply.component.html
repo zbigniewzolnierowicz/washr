@@ -1,6 +1,9 @@
 <img *ngIf="content.image && showNsfw" [src]="content.image" [alt]="content.content">
 <img *ngIf="content.image && !showNsfw" src="../../../assets/NSFW.webp" alt="">
 <div class="content" [innerHTML]="content.content | markdown"></div>
+<div class="buttons" *ngIf="content.postedBy == userUID">
+  <button (click)="deleteComment()">Delete reply</button>
+</div>
 <p>Posted by: <a [routerLink]="[ '/userinfo', content.postedBy ]" *ngIf="content.userData">{{ content.userData.userName }}</a></p>
-<p>Posted at: {{ content.postedAt | date }}</p>
+<p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>
 <!--TODO: Add a badge with user info-->

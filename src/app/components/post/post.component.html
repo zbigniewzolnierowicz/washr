@@ -3,6 +3,12 @@
   <h3>Posted by: <a [routerLink]="[ '/userinfo', post.postedBy ]" *ngIf="post.userData">{{ post.userData.userName }}</a></h3>
   <h3>Posted at: {{ post.postedAt.seconds * 1000 | date:'medium' }}</h3>
   <p *ngIf="post.isNSFW && !showNsfw">This post is not safe for work!</p>
+  <div *ngIf="userInfo | async as userData">
+    <p>{{ userData.email }}</p>
+  </div>
+  <div class="buttons" *ngIf="post.postedBy == userUID">
+    <button (click)="deletePost()">Delete post</button>
+  </div>
 </header>
 <img [src]="post.image" [alt]="post.title" *ngIf="post.image && showNsfw">
 <img src="../../../assets/NSFW.webp" alt="" *ngIf="post.image && !showNsfw">

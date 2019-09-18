@@ -5,3 +5,18 @@
   align-items: center;
   padding: 0 5vw;
 }
+
+
+form {
+  width: 50%;
+  padding: 1em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea, input[type="text"] {
+  display: block;
+  resize: none;
+  width: 100%;
+}

@@ -8,6 +8,8 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NsfwService } from 'src/app/services/nsfw.service';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { firestore } from 'firebase';
 
 @Component({
   selector: 'app-post',
@@ -27,11 +29,22 @@ export class PostComponent implements OnInit {
   error: string;
   progress: number = null;
   showNsfw: boolean;
+  userInfo: Observable<any>;
 
-  constructor(private pS: PostsService, private upS: FileUploadService, private afAuth: AngularFireAuth, private nsfw: NsfwService) { }
+  constructor(
+    private pS: PostsService,
+    private upS: FileUploadService,
+    private afAuth: AngularFireAuth,
+    private nsfw: NsfwService,
+    public uS: UserDataService) { }
+
+  get userUID() {
+    return this.afAuth.auth.currentUser.uid;
+  }
 
   ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
+    this.userInfo = this.uS.getUserData(this.post.userData.userID);
     this.nsfw.nsfwStatus.subscribe(nsfw => {
       if (nsfw === false) {
         this.post.isNSFW ? this.showNsfw = false : this.showNsfw = true;
@@ -57,7 +70,7 @@ export class PostComponent implements OnInit {
     const comment: Post = { // Object to be posted as a new reply
       ...this.reply.value,
       commentCount: 0,
-      postedAt: new Date().getTime(), // Get the current date
+      postedAt: firestore.FieldValue.serverTimestamp(), // Get the current date
       postedBy: this.afAuth.auth.currentUser.uid
     };
     if (this.reply.value.image != null) {
@@ -79,5 +92,9 @@ export class PostComponent implements OnInit {
         .catch(err => this.error = err);
     }
     this.replyForm.nativeElement.reset();
+  }
+
+  deletePost() {
+    this.pS.delete(this.post).then(() => console.log('Post deleted'));
   }
 }

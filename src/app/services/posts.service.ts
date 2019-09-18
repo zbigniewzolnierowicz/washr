@@ -4,13 +4,14 @@ import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
 import { Comment } from '../interfaces/comment';
 import { firestore } from 'firebase/app';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
 
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore, private st: AngularFireStorage) {}
 
   get getAllPosts() {
     return this.db.collection<Post>('posts').snapshotChanges().pipe(
@@ -53,8 +54,10 @@ export class PostsService {
   }
 
   // TODO: Make the same method as above, but with likes.
-  // TODO: Add a method for deleting posts
-  // TODO: Add a method for deleting comments
+  delete(subject: Post | Comment) {
+    if (subject.image) { this.st.storage.refFromURL(subject.image).delete(); }
+    return subject.ref.delete();
+  }
   // TODO: Add a method for editing posts
   // TODO: Add a method for editing comments
 }
