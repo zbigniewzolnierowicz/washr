@@ -15,6 +15,15 @@
     ". error error .";
 }
 
+:host.text {
+  grid-template-areas:
+    "header header header header"
+    ". content content ."
+    ". newReply newReply ."
+    ". replies replies ."
+    ". error error .";
+}
+
 img {
   grid-area: image;
   width: 100%;
