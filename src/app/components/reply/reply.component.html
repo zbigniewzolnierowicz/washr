@@ -1,5 +1,7 @@
-<img *ngIf="content.image && showNsfw" [src]="content.image" [alt]="content.content">
-<img *ngIf="content.image && !showNsfw" src="../../../assets/NSFW.webp" alt="">
+<ng-container *ngIf="content.image">
+  <img *ngIf="showNsfw" [src]="content.image" [alt]="content.content">
+  <img *ngIf="!showNsfw" src="../../../assets/NSFW.webp" alt="">
+</ng-container>
 <div class="content" [innerHTML]="content.content | markdown"></div>
 <div class="buttons" *ngIf="content.postedBy == userUID">
   <button (click)="deleteComment()">Delete reply</button>

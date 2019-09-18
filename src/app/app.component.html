@@ -1,9 +1,11 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
   <section class="buttons">
-    <button *ngIf="isLoggedIn && showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
-    <button *ngIf="isLoggedIn && !showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
     <button (click)="moveToTimeline()">Move to timeline (workaround)</button>
+    <ng-container *ngIf="isLoggedIn">
+      <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
+      <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
+    </ng-container>
     <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
   </section>
 </header>
