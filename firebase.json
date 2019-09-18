@@ -20,6 +20,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "predeploy": [
+      "npm run build:production"
+    ],
     "rewrites": [
       {
         "source": "**",
