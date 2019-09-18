@@ -3,14 +3,15 @@
   width: 100%;
   border: 2px solid black;
   margin: 2vh 0;
+  gap: 1em;
   grid-template-rows: auto auto auto auto auto auto;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1vw 1fr 3fr 1vw;
   grid-template-areas:
-    "header header"
-    "image content"
-    "newReply newReply"
-    "replies replies"
-    "error error";
+    "header header header header"
+    ". image content ."
+    ". newReply newReply ."
+    ". replies replies ."
+    ". error error .";
 }
 
 img {
@@ -24,12 +25,14 @@ header {
   display: grid;
   grid-template-columns: 9fr auto;
   grid-template-rows: auto auto;
+  gap: 1em;
   grid-area: header;
   flex-direction: column;
   background: black;
   color: white;
   padding: 1em;
   .postTitle {
+    font-size: 2.3em;
     grid-column: 1 / 1;
     grid-row: 1 / 1;
   }
@@ -38,6 +41,10 @@ header {
     grid-row: 2 / 2;
   }
   .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     grid-column: 2 / 2;
     grid-row: 2 / 2;
   }
