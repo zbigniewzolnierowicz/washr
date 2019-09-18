@@ -1,10 +1,10 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
-  <a [routerLink]="'/timeline'">Move to timeline (because routing is broken)</a>
-  <section class="buttons" *ngIf="isLoggedIn">
-    <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
-    <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
-    <button (click)="logOut()">Log out</button>
+  <section class="buttons">
+    <button *ngIf="isLoggedIn && showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
+    <button *ngIf="isLoggedIn && !showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
+    <button (click)="moveToTimeline()">Move to timeline (workaround)</button>
+    <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
   </section>
 </header>
 <router-outlet></router-outlet>

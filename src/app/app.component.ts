@@ -34,4 +34,8 @@ export class AppComponent implements OnInit {
   logOut() {
     this.afAuth.auth.signOut().then(() => this.router.navigate(['']));
   }
+
+  moveToTimeline() {
+    this.router.navigate(['timeline']);
+  }
 }
