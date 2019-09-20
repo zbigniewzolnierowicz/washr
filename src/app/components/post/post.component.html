@@ -1,31 +1,33 @@
-<header>
-  <h2 class="postTitle">{{ post.title }}</h2>
-  <app-badge [ngClass]="post.userData.userName.length <= 6 ? 'short' : ''" [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
-  <h3 class="timestamp">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
-  <div class="buttons" *ngIf="post.postedBy == userUID">
-    <button (click)="deletePost()">Delete post</button>
+<ng-container *ngIf="post.id">
+  <header>
+    <h2 class="postTitle">{{ post.title }}</h2>
+    <app-badge *ngIf="post.userData" [ngClass]="post.userData.userName.length <= 6 ? 'short' : ''" [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
+    <h3 class="timestamp">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
+    <div class="buttons" *ngIf="post.postedBy == userUID">
+      <button (click)="deletePost()">Delete post</button>
+    </div>
+  </header>
+  <ng-container *ngIf="post.image">
+    <img [src]="post.image" [alt]="post.title" *ngIf="showNsfw">
+    <img src="../../../assets/NSFW.webp" alt="" *ngIf="!showNsfw">
+  </ng-container>
+  <div class="content" [innerHTML]="post.content | markdown"></div>
+  <div class="newReply">
+    <button (click)="toggleIsReply()">Reply</button>
+    <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
+    <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
+      <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
+      <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
+      <app-upload formControlName="image"></app-upload>
+      <button type="submit">Send</button>
+    </form>
   </div>
-</header>
-<ng-container *ngIf="post.image">
-  <img [src]="post.image" [alt]="post.title" *ngIf="showNsfw">
-  <img src="../../../assets/NSFW.webp" alt="" *ngIf="!showNsfw">
+  <div class="replies">
+    <h2>Replies: {{ post.commentCount }}</h2>
+    <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
+  </div>
+  <div class="error" *ngIf="error">
+    <p>{{ error }}</p>
+    <button (click)="closeError()">Close</button>
+  </div>
 </ng-container>
-<div class="content" [innerHTML]="post.content | markdown"></div>
-<div class="newReply">
-  <button (click)="toggleIsReply()">Reply</button>
-  <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
-  <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
-    <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
-    <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
-    <app-upload formControlName="image"></app-upload>
-    <button type="submit">Send</button>
-  </form>
-</div>
-<div class="replies">
-  <h2>Replies: {{ post.commentCount }}</h2>
-  <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
-</div>
-<div class="error" *ngIf="error">
-  <p>{{ error }}</p>
-  <button (click)="closeError()">Close</button>
-</div>
