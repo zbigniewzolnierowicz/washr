@@ -15,6 +15,7 @@ export class ProfileEditComponent implements OnInit {
   constructor(private udS: UserDataService) { }
 
   ngOnInit() {
+    this.udS.loggedInUserData().subscribe(data => this.profileEdit.setValue({ bio: data.bio }));
   }
 
   onSubmit() {
