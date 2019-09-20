@@ -15,7 +15,7 @@ export class UserDataService {
     return this.db.collection('users').doc(userID).update({ bio });
   }
 
-  async loggedInUserData() {
+  loggedInUserData() {
     const userID = this.afAuth.auth.currentUser.uid;
     return this.db.collection('users').doc(userID).get().pipe(map(user => user.data()));
   }
