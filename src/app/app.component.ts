@@ -38,4 +38,8 @@ export class AppComponent implements OnInit {
   moveToTimeline() {
     this.router.navigate(['timeline']);
   }
+
+  moveToProfileEdit() {
+    this.router.navigate(['profile']);
+  }
 }

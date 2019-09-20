@@ -1,7 +1,12 @@
-<div class="userInfo" *ngIf="userInfo | async as userInfo">
-  <p>User name: {{ userInfo.displayName }}</p>
-  <p>Bio: {{ userInfo.bio }}</p>
-  <div class="avatar">
-    <img [src]="userInfo.photoURL" alt="">
-  </div>
-</div>
+<ng-container *ngIf="userInfo | async as userInfo">
+  <header>
+    <h1>{{ userInfo.displayName }}</h1>
+  </header>
+  <main [innerHTML]="userInfo.bio | markdown">
+  </main>
+  <aside>
+    <div class="avatar">
+      <img [src]="userInfo.photoURL" alt="">
+    </div>
+  </aside>
+</ng-container>
