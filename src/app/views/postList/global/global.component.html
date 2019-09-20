@@ -5,6 +5,7 @@
   <app-upload formControlName="image"></app-upload>
   <button type="submit">Send</button>
 </form>
+<!--TODO: Make the form float-->
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
