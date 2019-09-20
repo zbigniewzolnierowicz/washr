@@ -25,3 +25,23 @@ main {
   grid-column: 2 / 2;
   width: 100%;
 }
+
+main ::ng-deep {
+  p {
+    img {
+      max-height: 30vh;
+    }
+  }
+  table {
+    border-spacing: 0;
+    thead {
+      background: gray;
+      color: white;
+    }
+    tbody {
+      tr:nth-child(odd) {
+        background: rgb(221, 221, 221);
+      }
+    }
+  }
+}
