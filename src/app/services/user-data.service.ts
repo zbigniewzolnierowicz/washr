@@ -12,12 +12,10 @@ export class UserDataService {
 
   async loggedInUserData() {
     const userID = this.afAuth.auth.currentUser.uid;
-    console.log(userID);
     return this.db.collection('users').doc(userID).get().pipe(map(user => user.data()));
   }
 
   getUserData(userID: string) {
-    console.log(userID);
     return this.db.collection('users').doc(userID).get().pipe(map(user => user.data()));
   }
 }
