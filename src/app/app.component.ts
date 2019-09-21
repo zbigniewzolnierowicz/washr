@@ -42,4 +42,7 @@ export class AppComponent implements OnInit {
   moveToProfileEdit() {
     this.router.navigate(['profile']);
   }
+  moveToCredits() {
+    this.router.navigate(['about']);
+  }
 }

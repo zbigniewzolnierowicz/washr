@@ -5,6 +5,7 @@ import { UserInfoComponent } from './views/user-info/user-info.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
+import { CreditsComponent } from './views/credits/credits.component';
 
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['']);
 const redirectLoggedInToTimeline = redirectLoggedInTo(['timeline']);
@@ -25,11 +26,14 @@ const routes: Routes = [
     component: UserInfoComponent,
     ...canActivate(redirectUnauthorizedToLogin)
   },
-  // TODO: Add a profile editor
   {
     path: 'profile',
     component: ProfileEditComponent,
     ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
+    path: 'about',
+    component: CreditsComponent
   }
   // TODO: Add a detailed thread viewer
 ];

@@ -3,6 +3,7 @@
   <section class="buttons">
     <button (click)="moveToTimeline()">Move to timeline (workaround)</button>
     <button (click)="moveToProfileEdit()">Move to profile</button>
+    <button (click)="moveToCredits()">Move to credits</button>
     <ng-container *ngIf="isLoggedIn">
       <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
       <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
