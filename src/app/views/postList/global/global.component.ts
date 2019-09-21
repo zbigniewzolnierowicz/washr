@@ -24,8 +24,33 @@ export class GlobalComponent implements OnInit {
   });
   progress: number = null;
   error: string;
+  start: number;
+  end: number;
 
   constructor(private pS: PostsService, private afAuth: AngularFireAuth, private upS: FileUploadService) {}
+
+  format(ev: Event, type: string) {
+    ev.preventDefault();
+    const text: string = this.post.value.content || '';
+    const startIndex = this.start;
+    const endIndex = this.end - this.start;
+    const newText =
+      `${text.substr(0, startIndex) || ''}${type}${text.substr(startIndex, endIndex) || ''}${type}${text.substr(this.end, 999) || ''}`;
+    this.post.setValue({
+      ...this.post.value,
+      content: newText
+    });
+  }
+
+  insertHoriRule(ev: Event) {
+    ev.preventDefault();
+    const text: string = this.post.value.content || '';
+    const newText = text + '\n\n---';
+    this.post.setValue({
+      ...this.post.value,
+      content: newText
+    });
+  }
 
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
@@ -33,6 +58,11 @@ export class GlobalComponent implements OnInit {
 
   closeError() {
     this.error = '';
+  }
+
+  selectEvent(ev: any) {
+    this.start = ev.target.selectionStart;
+    this.end = ev.target.selectionEnd;
   }
 
   async onSubmit() {
