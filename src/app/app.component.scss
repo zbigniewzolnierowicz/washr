@@ -13,6 +13,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 1em;
+  z-index: 999;
   a {
     text-decoration: none;
     &:hover {

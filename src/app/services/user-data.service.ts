@@ -10,14 +10,17 @@ export class UserDataService {
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
-  async loggedInUserData() {
+  changeBio(bio: string) {
     const userID = this.afAuth.auth.currentUser.uid;
-    console.log(userID);
+    return this.db.collection('users').doc(userID).update({ bio });
+  }
+
+  loggedInUserData() {
+    const userID = this.afAuth.auth.currentUser.uid;
     return this.db.collection('users').doc(userID).get().pipe(map(user => user.data()));
   }
 
   getUserData(userID: string) {
-    console.log(userID);
     return this.db.collection('users').doc(userID).get().pipe(map(user => user.data()));
   }
 }

@@ -34,4 +34,15 @@ export class AppComponent implements OnInit {
   logOut() {
     this.afAuth.auth.signOut().then(() => this.router.navigate(['']));
   }
+
+  moveToTimeline() {
+    this.router.navigate(['timeline']);
+  }
+
+  moveToProfileEdit() {
+    this.router.navigate(['profile']);
+  }
+  moveToCredits() {
+    this.router.navigate(['about']);
+  }
 }

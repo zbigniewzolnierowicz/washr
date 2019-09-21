@@ -11,6 +11,7 @@
   <app-upload formControlName="image"></app-upload>
   <button type="submit">Send</button>
 </form>
+<!--TODO: Make the form float-->
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
@@ -20,4 +21,6 @@
   <h1>{{ post.value.title }}</h1>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
-<app-post *ngFor="let post of posts | async" [post]="post"></app-post>
+<div class="posts" *ngIf="posts">
+  <app-post *ngFor="let post of posts | async" [ngClass]="post.image ? 'image' : 'text'" [post]="post"></app-post>
+</div>

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NsfwService } from 'src/app/services/nsfw.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { firestore } from 'firebase';
+import { firestore } from 'firebase/app';
 
 @Component({
   selector: 'app-post',
@@ -95,6 +95,6 @@ export class PostComponent implements OnInit {
   }
 
   deletePost() {
-    this.pS.delete(this.post).then(() => console.log('Post deleted'));
+    this.pS.delete(this.post); // .then(() => console.log('Post deleted'));
   }
 }
