@@ -1,3 +1,4 @@
+<!--TODO: Make more post lists (i.e.: list of posts for people the user follows)-->
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
   <label>Title: <input type="text" formControlName="title"></label>
   <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content" (select)="selectEvent($event)"></textarea></label>
@@ -12,6 +13,7 @@
   <button type="submit">Send</button>
 </form>
 <!--TODO: Make the form float-->
+<!--TODO: Move the form outside of the post list-->
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
