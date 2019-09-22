@@ -19,8 +19,11 @@ header {
     &:hover {
       color: gainsboro;
     }
-    &:active, &:visited {
+    &:active,
+    &:visited {
       color: white;
     }
   }
 }
+
+// TODO: Make the background something like #262a2b

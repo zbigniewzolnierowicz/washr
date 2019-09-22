@@ -8,6 +8,7 @@
       <button (click)="toggleIsEdit()">Edit post</button>
     </div>
   </header>
+  <!-- TODO: Add support for MP4 and WEBM -->
   <ng-container *ngIf="post.image">
     <img [src]="post.image" [alt]="post.title" *ngIf="showNsfw">
     <img src="../../../assets/NSFW.webp" alt="" *ngIf="!showNsfw">
