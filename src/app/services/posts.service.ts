@@ -10,44 +10,62 @@ import { AngularFireStorage } from '@angular/fire/storage';
   providedIn: 'root'
 })
 export class PostsService {
-
   constructor(private db: AngularFirestore, private st: AngularFireStorage) {}
 
   get getAllPosts() {
-    return this.db.collection<Post>('posts', query => query.orderBy('postedAt', 'desc')).snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Post;
-        const id = a.payload.doc.id;
-        const ref = a.payload.doc.ref;
-        return { id, ref, ...data };
-      }))
-    );
+    return this.db
+      .collection<Post>('posts', query => query.orderBy('postedAt', 'desc'))
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as Post;
+            const id = a.payload.doc.id;
+            const ref = a.payload.doc.ref;
+            return { id, ref, ...data };
+          })
+        )
+      );
   }
 
   getCommentsForPost(post: Post) {
-    return this.db.doc(post.ref).collection('comments', query => query.orderBy('postedAt', 'desc')).snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Post;
-        const id = a.payload.doc.id;
-        const ref = a.payload.doc.ref;
-        return { id, ref, ...data };
-      }))
-    );
+    return this.db
+      .doc(post.ref)
+      .collection('comments', query => query.orderBy('postedAt', 'desc'))
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as Post;
+            const id = a.payload.doc.id;
+            const ref = a.payload.doc.ref;
+            return { id, ref, ...data };
+          })
+        )
+      );
   }
 
   createPost(post: Post) {
     return new Promise((resolve, reject) => {
-      this.db.collection<Post>('posts').add(post) // Add a new post to the posts collection in Firebase
+      this.db
+        .collection<Post>('posts')
+        .add(post) // Add a new post to the posts collection in Firebase
         .then(data => resolve(data))
         .catch(err => reject(err));
     });
   }
 
   addCommentToPost(post: Post, comment: Comment) {
-    return new Promise((resolve, reject) => { // Add a new comment to the comments subcollection of a post
-      post.ref.collection('comments').add(comment)
+    return new Promise((resolve, reject) => {
+      // Add a new comment to the comments subcollection of a post
+      post.ref
+        .collection('comments')
+        .add(comment)
         .then(data => {
-          this.db.doc(`users/${post.postedBy}`).update({ comments: firestore.FieldValue.arrayUnion(data.id) }).then(() => resolve(data));
+          this.db
+            .doc(`users/${post.postedBy}`)
+            .update({ comments: firestore.FieldValue.arrayUnion(data.id) })
+            .then(() => resolve(data));
         })
         .catch(err => reject(err));
     });
@@ -55,9 +73,14 @@ export class PostsService {
 
   // TODO: Make the same method as above, but with likes.
   delete(subject: Post | Comment) {
-    if (subject.image) { this.st.storage.refFromURL(subject.image).delete(); }
+    if (subject.image) {
+      this.st.storage.refFromURL(subject.image).delete();
+    }
     return subject.ref.delete();
   }
   // TODO: Add a method for editing posts
+  edit(subject: Post | Comment, content: string) {
+    return subject.ref.update({ content });
+  }
   // TODO: Add a method for editing comments
 }

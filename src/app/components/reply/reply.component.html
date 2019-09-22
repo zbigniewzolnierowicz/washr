@@ -2,9 +2,20 @@
   <img *ngIf="showNsfw" [src]="content.image" [alt]="content.content">
   <img *ngIf="!showNsfw" src="../../../assets/NSFW.webp" alt="">
 </ng-container>
-<div class="content" [innerHTML]="content.content | markdown"></div>
+<div *ngIf="!isEdit" class="content" [innerHTML]="content.content | markdown"></div>
+<form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
+  <textarea formControlName="content" (select)="selectEvent($event)"></textarea>
+  <button type="submit">Submit edit</button>
+  <div class="control-btns">
+    <button class="bold" (click)="format($event, '**')">Bold</button>
+    <button class="italicize" (click)="format($event, '*')">Italicize</button>
+    <button class="strikethrough" (click)="format($event, '~')">Strikethrough</button>
+    <button class="hrule" (click)="insertHoriRule($event)">Horizontal rule</button>
+  </div>
+</form>
 <div class="buttons" *ngIf="content.postedBy == userUID">
   <button (click)="deleteComment()">Delete reply</button>
+  <button (click)="toggleIsEdit()">Edit reply</button>
 </div>
 <app-badge [ngClass]="content.userData.userName.length <= 6 ? 'short' : ''" *ngIf="content.userData.userPhoto" [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
 <p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>
