@@ -13,7 +13,6 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
   styleUrls: ['./global.component.scss']
 })
 export class GlobalComponent implements OnInit {
-
   posts: Observable<any>;
   @ViewChild('form', { static: false }) form: ElementRef;
   post = new FormGroup({
@@ -34,8 +33,8 @@ export class GlobalComponent implements OnInit {
     const text: string = this.post.value.content || '';
     const startIndex = this.start;
     const endIndex = this.end - this.start;
-    const newText =
-      `${text.substr(0, startIndex) || ''}${type}${text.substr(startIndex, endIndex) || ''}${type}${text.substr(this.end, 999) || ''}`;
+    const newText = `${text.substr(0, startIndex) || ''}${type}${text.substr(startIndex, endIndex) ||
+      ''}${type}${text.substr(this.end, 999) || ''}`;
     this.post.setValue({
       ...this.post.value,
       content: newText
@@ -67,38 +66,45 @@ export class GlobalComponent implements OnInit {
 
   async onSubmit() {
     if (this.afAuth.auth.currentUser != null) {
-      let uploader: { task: any; ref: any; };
+      let uploader: { task: any; ref: any };
       if (this.post.value.image != null) {
         uploader = this.upS.uploadImageForPost(this.post.value.image);
       }
-      const post: Post = { // Object to be posted as a new post
+      const post: Post = {
+        // Object to be posted as a new post
         ...this.post.value,
         commentCount: 0,
         postedAt: new Date(), // Get the date right
         postedBy: this.afAuth.auth.currentUser.uid
       };
       if (this.post.value.image != null) {
-        uploader.task.percentageChanges()
-        .pipe(
-          finalize(() => this.progress = null)
-        )
-        .subscribe((progress: number) => this.progress = progress); // Get the percentage status of the image upload
-        uploader.task.snapshotChanges().pipe(
-        finalize(() => {
-          uploader.ref.getDownloadURL().subscribe(url => { // Get the URL of the uploaded image
-            post.image = url; // Append it to the object responsible for being uploaded
-            this.pS.createPost(post) // Create a new post
-              .catch(err => this.error = err);
-          });
-        })).subscribe();
+        uploader.task
+          .percentageChanges()
+          .pipe(finalize(() => (this.progress = null)))
+          .subscribe((progress: number) => (this.progress = progress)); // Get the percentage status of the image upload
+        uploader.task
+          .snapshotChanges()
+          .pipe(
+            finalize(() => {
+              uploader.ref.getDownloadURL().subscribe(url => {
+                // Get the URL of the uploaded image
+                // TODO: Store the GCP URI instead of the HTTP URL
+                post.image = url; // Append it to the object responsible for being uploaded
+                this.pS
+                  .createPost(post) // Create a new post
+                  .catch(err => (this.error = err));
+              });
+            })
+          )
+          .subscribe();
       } else {
-        this.pS.createPost(post) // Create a new post
-          .catch(err => this.error = err);
+        this.pS
+          .createPost(post) // Create a new post
+          .catch(err => (this.error = err));
       }
       this.form.nativeElement.reset();
     } else {
       this.error = 'You need to log in!';
     }
   }
-
 }
