@@ -61,7 +61,7 @@ img {
 header {
   display: grid;
   grid-template-columns: 9fr auto;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto auto;
   gap: 1vh 1vw;
   grid-area: header;
   flex-direction: column;
@@ -71,23 +71,46 @@ header {
   .postTitle {
     font-size: 2.3em;
     grid-column: 1 / 1;
-    grid-row: 1 / 1;
+    grid-row: 1 / 2;
   }
   .timestamp {
     grid-column: 1 / 1;
-    grid-row: 2 / 2;
+    grid-row: 3 / 4;
   }
   .buttons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
     grid-column: 2 / 2;
-    grid-row: 2 / 2;
+    grid-row: 3 / 4;
   }
   app-badge {
     grid-column: 2 / 2;
-    grid-row: 1 / 1;
+    grid-row: 1 / 2;
+  }
+  &.small {
+    align-content: center;
+    .postTitle {
+      font-size: 2.3em;
+      grid-column: 1 / 1;
+      grid-row: 1 / 1;
+    }
+    .timestamp {
+      grid-column: 1 / 1;
+      grid-row: 2 / 2;
+    }
+    .buttons {
+      justify-content: space-evenly;
+      grid-column: 1 / 1;
+      grid-row: 3 / 3;
+    }
+    app-badge {
+      margin: 0 auto;
+      grid-column: 1 / 1;
+      grid-row: 4 / 4;
+    }
   }
 }
 
