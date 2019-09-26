@@ -71,7 +71,7 @@ img {
   grid-area: image;
   width: 100%;
   max-height: 30vh;
-  object-fit: scale-down;
+  object-fit: contain;
 }
 
 header {
