@@ -6,3 +6,4 @@ service cloud.firestore {
     }
   }
 }
+// TODO: Make the rules better
