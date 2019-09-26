@@ -2,29 +2,21 @@
   font-family: emoji;
 
   /* Fonts for text outside emoji blocks */
-  src:
-    local('Gill Sans'),
-    local('Gill Sans MT'),
-    local('Calibri'),
-    local('Trebuchet MS'),
-    local(sans-serif);
+  src: local('Gill Sans'), local('Gill Sans MT'), local('Calibri'), local('Trebuchet MS'), local(sans-serif);
 }
 
 @font-face {
   font-family: emoji;
 
-  src:
-    local('Apple Color Emoji'),
-    local('Noto Color Emoji'),
-    local('Android Emoji'),
-    local(EmojiSymbols),
+  src: local('Apple Color Emoji'), local('Noto Color Emoji'), local('Android Emoji'), local(EmojiSymbols),
     url('./assets/fonts/TwitterColorEmoji-SVGinOT.ttf') format('truetype');
 
   /* Emoji unicode blocks */
   unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF;
 }
 
-html, body {
+html,
+body {
   height: fit-content;
   width: 100%;
   margin: 0;
@@ -35,7 +27,11 @@ body {
   background: whitesmoke;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
 }
 
@@ -67,9 +63,11 @@ h1, h2, h3, h4, h5 {
   font-style: normal;
 }
 
-code, pre {
+code,
+pre {
   font-family: 'Monoid', monospace;
   font-size: 0.9em;
+  overflow-x: scroll;
 }
 
 /*
@@ -153,7 +151,8 @@ code, pre {
   color: #cc00ff;
 }
 
-.hljs, pre {
+.hljs,
+pre {
   display: block;
   background: #000000;
   color: #d0d0d0;
