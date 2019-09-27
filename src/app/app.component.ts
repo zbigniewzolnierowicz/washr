@@ -18,13 +18,18 @@ export class AppComponent implements OnInit {
   error: string;
   isLoggedIn: boolean;
   showAdult: boolean;
+  buttonsHidden = true;
 
   // tslint:disable-next-line: max-line-length
   constructor(public afAuth: AngularFireAuth, private router: Router, private nsfw: NsfwService) {}
 
   ngOnInit() {
-    this.afAuth.user.subscribe(u => u ? this.isLoggedIn = true : this.isLoggedIn = false);
-    this.nsfw.nsfwStatus.subscribe(nsfw => this.showAdult = nsfw);
+    this.afAuth.user.subscribe(u => (u ? (this.isLoggedIn = true) : (this.isLoggedIn = false)));
+    this.nsfw.nsfwStatus.subscribe(nsfw => (this.showAdult = nsfw));
+  }
+
+  hideButtons() {
+    this.buttonsHidden = !this.buttonsHidden;
   }
 
   toggleShowAdult() {

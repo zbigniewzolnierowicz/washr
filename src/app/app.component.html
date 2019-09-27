@@ -1,5 +1,6 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
+  <button class="hider" (click)="hideButtons()">{{ buttonsHidden ? 'Show' : 'Hide' }} buttons</button>
   <section [ngClass]="['buttons', (buttonsHidden ? 'hidden' : '')]">
     <button (click)="moveToCredits()">Move to credits</button>
     <ng-container *ngIf="isLoggedIn">

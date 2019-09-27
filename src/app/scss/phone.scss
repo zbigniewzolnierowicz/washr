@@ -1,0 +1,19 @@
+header {
+  flex-direction: column;
+  h1 {
+    text-align: center;
+  }
+  .hider {
+    display: block;
+  }
+  section.buttons {
+    flex-direction: column;
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+button {
+  height: 4vh;
+}
