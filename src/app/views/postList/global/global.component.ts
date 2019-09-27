@@ -6,6 +6,7 @@ import { Post } from 'src/app/interfaces/post';
 import { finalize } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { AngularFireStorageReference } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-global',
@@ -66,7 +67,7 @@ export class GlobalComponent implements OnInit {
 
   async onSubmit() {
     if (this.afAuth.auth.currentUser != null) {
-      let uploader: { task: any; ref: any };
+      let uploader: { task: any; ref: AngularFireStorageReference };
       if (this.post.value.image != null) {
         uploader = this.upS.uploadImageForPost(this.post.value.image);
       }
@@ -86,9 +87,10 @@ export class GlobalComponent implements OnInit {
           .snapshotChanges()
           .pipe(
             finalize(() => {
-              uploader.ref.getDownloadURL().subscribe(url => {
-                // Get the URL of the uploaded image
-                // TODO: Store the GCP URI instead of the HTTP URL
+              // uploader.ref.getDownloadURL().subscribe(url => {
+              uploader.ref.getMetadata().subscribe(metadata => {
+                // Get the URI of the uploaded image
+                const url = metadata.fullPath;
                 post.image = url; // Append it to the object responsible for being uploaded
                 this.pS
                   .createPost(post) // Create a new post

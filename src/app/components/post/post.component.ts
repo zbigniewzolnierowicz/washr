@@ -10,7 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NsfwService } from 'src/app/services/nsfw.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { firestore } from 'firebase/app';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-post',
@@ -37,6 +37,7 @@ export class PostComponent implements OnInit {
   userInfo: Observable<any>;
   start = 0;
   end = 0;
+  thumbimage: string;
   postimage: string;
   fileMetadata: any;
 
@@ -68,7 +69,12 @@ export class PostComponent implements OnInit {
     });
     if (this.post.image) {
       const imageRef = this.afStorage.ref(this.post.image);
-      imageRef.getDownloadURL().subscribe(img => (this.postimage = img));
+      let thumbRef: AngularFireStorageReference;
+      imageRef.getMetadata().subscribe(metadata => {
+        thumbRef = this.afStorage.ref(`posts/${metadata.name.replace(/(\.[\w\d_-]+)$/i, '_200x200$1')}`);
+        thumbRef.getDownloadURL().subscribe(img => (this.thumbimage = img));
+        imageRef.getDownloadURL().subscribe(img => (this.postimage = img));
+      });
     }
   }
 

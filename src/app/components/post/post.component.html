@@ -10,7 +10,7 @@
   </header>
   <!-- TODO: Add support for MP4 and WEBM -->
   <ng-container *ngIf="postimage">
-    <img [src]="postimage" [alt]="post.title" *ngIf="showNsfw">
+    <img [src]="thumbimage" [alt]="post.title" *ngIf="showNsfw">
     <img src="../../../assets/NSFW.webp" alt="" *ngIf="!showNsfw">
   </ng-container>
   <div class="content" [innerHTML]="post.content | markdown" *ngIf="!isEdit"></div>
