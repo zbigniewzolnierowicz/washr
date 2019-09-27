@@ -71,7 +71,8 @@ export class PostComponent implements OnInit {
       const imageRef = this.afStorage.ref(this.post.image);
       let thumbRef: AngularFireStorageReference;
       imageRef.getMetadata().subscribe(metadata => {
-        thumbRef = this.afStorage.ref(`posts/${metadata.name.replace(/(\.[\w\d_-]+)$/i, '_200x200$1')}`);
+        this.fileMetadata = metadata;
+        thumbRef = this.afStorage.ref(`posts/${this.fileMetadata.name.replace(/(\.[\w\d_-]+)$/i, '_200x200$1')}`);
         thumbRef.getDownloadURL().subscribe(img => (this.thumbimage = img));
         imageRef.getDownloadURL().subscribe(img => (this.postimage = img));
       });
