@@ -13,20 +13,14 @@
   <div class="content" [innerHTML]="post.content | markdown" *ngIf="!isEdit"></div>
   <!--TODO: Move form to separate component-->
   <form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
-    <textarea formControlName="content" (select)="selectEvent($event)"></textarea>
+    <app-wysiwyg formControlName="content"></app-wysiwyg>
     <button type="submit">Submit edit</button>
-    <div class="control-btns">
-      <button class="bold" (click)="format($event, '**')">Bold</button>
-      <button class="italicize" (click)="format($event, '*')">Italicize</button>
-      <button class="strikethrough" (click)="format($event, '~')">Strikethrough</button>
-      <button class="hrule" (click)="insertHoriRule($event)">Horizontal rule</button>
-    </div>
   </form>
   <div class="newReply">
     <button (click)="toggleIsReply()">Reply</button>
     <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
     <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
-      <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea></label>
+      <app-wysiwyg formControlName="content"></app-wysiwyg>
       <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
       <app-upload formControlName="image"></app-upload>
       <button type="submit">Send</button>

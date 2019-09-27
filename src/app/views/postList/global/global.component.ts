@@ -18,7 +18,7 @@ export class GlobalComponent implements OnInit {
   @ViewChild('form', { static: false }) form: ElementRef;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
-    content: new FormControl(null, Validators.required),
+    content: new FormControl('postcontent', Validators.required),
     isNSFW: new FormControl(false),
     image: new FormControl(null)
   });
@@ -29,40 +29,12 @@ export class GlobalComponent implements OnInit {
 
   constructor(private pS: PostsService, private afAuth: AngularFireAuth, private upS: FileUploadService) {}
 
-  format(ev: Event, type: string) {
-    ev.preventDefault();
-    const text: string = this.post.value.content || '';
-    const startIndex = this.start;
-    const endIndex = this.end - this.start;
-    const newText = `${text.substr(0, startIndex) || ''}${type}${text.substr(startIndex, endIndex) ||
-      ''}${type}${text.substr(this.end, 999) || ''}`;
-    this.post.setValue({
-      ...this.post.value,
-      content: newText
-    });
-  }
-
-  insertHoriRule(ev: Event) {
-    ev.preventDefault();
-    const text: string = this.post.value.content || '';
-    const newText = text + '\n\n---';
-    this.post.setValue({
-      ...this.post.value,
-      content: newText
-    });
-  }
-
   ngOnInit() {
     this.posts = this.pS.getAllPosts;
   }
 
   closeError() {
     this.error = '';
-  }
-
-  selectEvent(ev: any) {
-    this.start = ev.target.selectionStart;
-    this.end = ev.target.selectionEnd;
   }
 
   async onSubmit() {

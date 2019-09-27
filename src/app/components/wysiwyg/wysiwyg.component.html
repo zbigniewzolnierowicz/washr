@@ -1,0 +1,10 @@
+<label>
+  Content:
+  <textarea [formControl]="content" (blur)="onTouched()" (select)="selectEvent($event)"></textarea>
+</label>
+<div class="control-btns">
+  <button class="bold" (click)="format($event, '**')">B</button>
+  <button class="italics" (click)="format($event, '*')">I</button>
+  <button class="strike" (click)="format($event, '~')">~</button>
+  <button class="hrule" (click)="insertHoriRule($event)">---</button>
+</div>

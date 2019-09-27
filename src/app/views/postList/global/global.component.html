@@ -1,13 +1,7 @@
 <!--TODO: Make more post lists (i.e.: list of posts for people the user follows)-->
 <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
   <label>Title: <input type="text" formControlName="title"></label>
-  <label>Content: <textarea name="" id="" cols="30" rows="10" formControlName="content" (select)="selectEvent($event)"></textarea></label>
-  <div class="control-btns">
-    <button (click)="format($event, '**')">B</button>
-    <button (click)="format($event, '*')">I</button>
-    <button (click)="format($event, '~')">~</button>
-    <button (click)="insertHoriRule($event)">---</button>
-  </div>
+  <app-wysiwyg formControlName="content"></app-wysiwyg>
   <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
   <app-upload formControlName="image"></app-upload>
   <button type="submit">Send</button>

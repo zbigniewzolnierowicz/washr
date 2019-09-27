@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule, forwardRef } from '@angular/core';
+import { ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
@@ -23,6 +23,7 @@ import { BadgeComponent } from './components/badge/badge.component';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { CreditsComponent } from './views/credits/credits.component';
 import { ImageComponent } from './components/image/image.component';
+import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ImageComponent } from './components/image/image.component';
     BadgeComponent,
     ProfileEditComponent,
     CreditsComponent,
-    ImageComponent
+    ImageComponent,
+    WysiwygComponent
   ],
   imports: [
     BrowserModule,
