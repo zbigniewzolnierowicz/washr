@@ -101,5 +101,4 @@ addUserDataToPost = functions.firestore.document('posts/{postId}').onWrite(async
   }
 });
 
-// TODO: Add a function that generates a smaller thumb image whenever the user uploads an image
 // TODO: Add a function that generates a thumbnail for the uploaded video
