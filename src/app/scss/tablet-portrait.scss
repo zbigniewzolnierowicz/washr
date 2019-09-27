@@ -10,3 +10,10 @@ header {
     flex-direction: row;
   }
 }
+
+.shown {
+  grid-template-areas:
+    '. . .'
+    '. image .'
+    '. . .';
+}

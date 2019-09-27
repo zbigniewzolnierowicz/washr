@@ -17,3 +17,10 @@ header {
 button {
   height: 4vh;
 }
+
+.shown {
+  grid-template-areas:
+    '. . .'
+    'image image image'
+    '. . .';
+}
