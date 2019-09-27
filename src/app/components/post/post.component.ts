@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NsfwService } from 'src/app/services/nsfw.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { firestore } from 'firebase/app';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-post',
@@ -36,11 +37,14 @@ export class PostComponent implements OnInit {
   userInfo: Observable<any>;
   start = 0;
   end = 0;
+  postimage: string;
+  fileMetadata: any;
 
   constructor(
     private pS: PostsService,
     private upS: FileUploadService,
     private afAuth: AngularFireAuth,
+    private afStorage: AngularFireStorage,
     private nsfw: NsfwService,
     public uS: UserDataService
   ) {}
@@ -49,7 +53,7 @@ export class PostComponent implements OnInit {
     return this.afAuth.auth.currentUser.uid;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.replies = this.pS.getCommentsForPost(this.post);
     this.userInfo = this.uS.getUserData(this.post.userData.userID);
     this.nsfw.nsfwStatus.subscribe(nsfw => {
@@ -62,6 +66,10 @@ export class PostComponent implements OnInit {
     this.postEdit.setValue({
       content: this.post.content
     });
+    if (this.post.image) {
+      const imageRef = this.afStorage.ref(this.post.image);
+      imageRef.getDownloadURL().subscribe(img => (this.postimage = img));
+    }
   }
 
   format(ev: Event, type: string) {
