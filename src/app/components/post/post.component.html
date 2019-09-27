@@ -11,7 +11,6 @@
   <!-- TODO: Add support for MP4 and WEBM -->
   <app-image [fullimg]="postimage" [thumbnail]="thumbimage" [desc]="post.content" *ngIf="postimage"></app-image>
   <div class="content" [innerHTML]="post.content | markdown" *ngIf="!isEdit"></div>
-  <!--TODO: Move form to separate component-->
   <form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
     <app-wysiwyg formControlName="content"></app-wysiwyg>
     <button type="submit">Submit edit</button>

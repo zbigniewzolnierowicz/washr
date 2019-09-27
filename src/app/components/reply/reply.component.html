@@ -9,4 +9,3 @@
   <button (click)="toggleIsEdit()">Edit reply</button>
 </section>
 <app-badge [ngClass]="content.userData.userName.length <= 6 ? 'short' : ''" *ngIf="content.userData.userPhoto" [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
-<!--<p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>-->

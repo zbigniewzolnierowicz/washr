@@ -18,7 +18,7 @@ export class GlobalComponent implements OnInit {
   @ViewChild('form', { static: false }) form: ElementRef;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
-    content: new FormControl('postcontent', Validators.required),
+    content: new FormControl('', Validators.required),
     isNSFW: new FormControl(false),
     image: new FormControl(null)
   });

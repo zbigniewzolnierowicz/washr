@@ -54,34 +54,6 @@ export class ReplyComponent implements OnInit {
     }
   }
 
-  format(ev: Event, type: string) {
-    ev.preventDefault();
-    const text: string = this.postEdit.value.content || '';
-    const startIndex = this.start;
-    const endIndex = this.end - this.start;
-    const newText = `${text.substr(0, startIndex) || ''}${type}${text.substr(startIndex, endIndex) ||
-      ''}${type}${text.substr(this.end, 999) || ''}`;
-    this.postEdit.setValue({
-      ...this.postEdit.value,
-      content: newText
-    });
-  }
-
-  selectEvent(ev: any) {
-    this.start = ev.target.selectionStart;
-    this.end = ev.target.selectionEnd;
-  }
-
-  insertHoriRule(ev: Event) {
-    ev.preventDefault();
-    const text: string = this.postEdit.value.content || '';
-    const newText = text + '\n\n---';
-    this.postEdit.setValue({
-      ...this.postEdit.value,
-      content: newText
-    });
-  }
-
   toggleIsEdit() {
     this.isEdit = !this.isEdit;
   }
