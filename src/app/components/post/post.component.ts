@@ -124,7 +124,7 @@ export class PostComponent implements OnInit {
   }
 
   onSubmit() {
-    let uploader: { task: any; ref: any };
+    let uploader: { task: any; ref: AngularFireStorageReference };
     if (this.reply.value.image != null) {
       uploader = this.upS.uploadImageForPost(this.reply.value.image);
     }
@@ -144,7 +144,8 @@ export class PostComponent implements OnInit {
         .snapshotChanges()
         .pipe(
           finalize(() => {
-            uploader.ref.getDownloadURL().subscribe(url => {
+            uploader.ref.getMetadata().subscribe(metadata => {
+              const url = metadata.fullPath;
               // Get the URL of the uploaded image
               comment.image = url; // Append it to the object responsible for being uploaded
               this.pS

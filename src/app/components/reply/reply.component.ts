@@ -4,6 +4,7 @@ import { NsfwService } from 'src/app/services/nsfw.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-reply',
@@ -19,8 +20,16 @@ export class ReplyComponent implements OnInit {
   });
   start = 0;
   end = 0;
+  thumb: string;
+  img: string;
+  fileMetadata: any;
 
-  constructor(private nsfw: NsfwService, private pS: PostsService, private afAuth: AngularFireAuth) {}
+  constructor(
+    private nsfw: NsfwService,
+    private pS: PostsService,
+    private afAuth: AngularFireAuth,
+    private afStorage: AngularFireStorage
+  ) {}
 
   ngOnInit() {
     this.nsfw.nsfwStatus.subscribe(nsfw => {
@@ -33,6 +42,16 @@ export class ReplyComponent implements OnInit {
     this.postEdit.setValue({
       content: this.content.content
     });
+    if (this.content.image) {
+      const imageRef = this.afStorage.ref(this.content.image);
+      let thumbRef: AngularFireStorageReference;
+      imageRef.getMetadata().subscribe(metadata => {
+        this.fileMetadata = metadata;
+        thumbRef = this.afStorage.ref(`posts/${this.fileMetadata.name.replace(/(\.[\w\d_-]+)$/i, '_200x200$1')}`);
+        thumbRef.getDownloadURL().subscribe(img => (this.thumb = img));
+        imageRef.getDownloadURL().subscribe(img => (this.img = img));
+      });
+    }
   }
 
   format(ev: Event, type: string) {

@@ -1,5 +1,5 @@
-<ng-container *ngIf="content.image">
-  <img *ngIf="showNsfw" [src]="content.image" [alt]="content.content">
+<ng-container *ngIf="thumb">
+  <img *ngIf="showNsfw" [src]="thumb" [alt]="content.content">
   <img *ngIf="!showNsfw" src="../../../assets/NSFW.webp" alt="">
 </ng-container>
 <div *ngIf="!isEdit" class="content" [innerHTML]="content.content | markdown"></div>

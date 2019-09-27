@@ -74,13 +74,11 @@ export class PostsService {
   // TODO: Make the same method as above, but with likes.
   delete(subject: Post | Comment) {
     if (subject.image) {
-      this.st.storage.refFromURL(subject.image).delete();
+      this.st.ref(subject.image).delete();
     }
     return subject.ref.delete();
   }
-  // TODO: Add a method for editing posts
   edit(subject: Post | Comment, content: string) {
     return subject.ref.update({ content });
   }
-  // TODO: Add a method for editing comments
 }
