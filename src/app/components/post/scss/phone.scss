@@ -1,0 +1,30 @@
+:host {
+  grid-template-areas:
+    'header header header header'
+    '. image image .'
+    '. content content .'
+    '. newReply newReply .'
+    '. replies replies .'
+    '. error error .';
+}
+header {
+  .postTitle {
+    font-size: 2.3em;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+  .timestamp {
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+  }
+  .buttons {
+    justify-content: space-evenly;
+    grid-column: 1 / 1;
+    grid-row: 3 / 3;
+  }
+  app-badge {
+    margin: 0 auto;
+    grid-column: 1 / 1;
+    grid-row: 4 / 4;
+  }
+}

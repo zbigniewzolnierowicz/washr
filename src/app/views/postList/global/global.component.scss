@@ -1,3 +1,25 @@
+@import '../../../../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}
+
 :host {
   display: flex;
   background: rgba(75, 75, 75, 0.5);
@@ -8,14 +30,13 @@
 }
 
 form {
-  width: 50%;
-  padding: 1em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
-textarea, input[type="text"] {
+textarea,
+input[type='text'] {
   display: block;
   resize: none;
   width: 100%;

@@ -1,3 +1,25 @@
+@import '../../../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}
+
 :host {
   display: grid;
   width: 100%;
@@ -5,14 +27,8 @@
   border: 2px solid black;
   margin: 2vh 0;
   gap: 1vh 1vw;
-  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto auto;
   grid-template-columns: 1vw 1fr 3fr 1vw;
-  grid-template-areas:
-    'header header header header'
-    '. image content .'
-    '. newReply newReply .'
-    '. replies replies .'
-    '. error error .';
 }
 
 :host.text {
@@ -55,7 +71,7 @@ img {
   grid-area: image;
   width: 100%;
   max-height: 30vh;
-  object-fit: scale-down;
+  object-fit: contain;
 }
 
 header {
@@ -68,50 +84,6 @@ header {
   background: black;
   color: white;
   padding: 1em;
-  .postTitle {
-    font-size: 2.3em;
-    grid-column: 1 / 1;
-    grid-row: 1 / 2;
-  }
-  .timestamp {
-    grid-column: 1 / 1;
-    grid-row: 3 / 4;
-  }
-  .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    grid-column: 2 / 2;
-    grid-row: 3 / 4;
-  }
-  app-badge {
-    grid-column: 2 / 2;
-    grid-row: 1 / 2;
-  }
-  &.small {
-    align-content: center;
-    .postTitle {
-      font-size: 2.3em;
-      grid-column: 1 / 1;
-      grid-row: 1 / 1;
-    }
-    .timestamp {
-      grid-column: 1 / 1;
-      grid-row: 2 / 2;
-    }
-    .buttons {
-      justify-content: space-evenly;
-      grid-column: 1 / 1;
-      grid-row: 3 / 3;
-    }
-    app-badge {
-      margin: 0 auto;
-      grid-column: 1 / 1;
-      grid-row: 4 / 4;
-    }
-  }
 }
 
 .content {

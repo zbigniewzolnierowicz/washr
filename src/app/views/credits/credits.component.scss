@@ -1,0 +1,21 @@
+@import '../../../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}

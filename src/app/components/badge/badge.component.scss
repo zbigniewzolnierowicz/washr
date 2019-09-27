@@ -1,3 +1,25 @@
+@import '../../../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}
+
 :host {
   display: flex;
   height: 3em;
@@ -14,14 +36,16 @@
 a {
   display: flex;
   box-sizing: border-box;
-  padding: .25em;
+  padding: 0.25em;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   text-decoration: none;
-  &, &:active, &:hover {
+  &,
+  &:active,
+  &:hover {
     color: white;
   }
 }

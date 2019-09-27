@@ -1,3 +1,25 @@
+@import '../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}
+
 :host {
   display: block;
   height: fit-content;
@@ -10,7 +32,6 @@ header {
   color: white;
   background: black;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   padding: 1em;
   z-index: 999;
@@ -26,4 +47,8 @@ header {
   }
 }
 
+section.buttons {
+  display: flex;
+}
 // TODO: Make the background something like #262a2b
+// TODO: Make a separate scss for storing colors

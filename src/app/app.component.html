@@ -1,15 +1,14 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
-  <section class="buttons">
-    <button (click)="moveToTimeline()">Move to timeline (workaround)</button>
-    <button (click)="moveToProfileEdit()">Move to profile</button>
+  <button class="hider" (click)="hideButtons()">{{ buttonsHidden ? 'Show' : 'Hide' }} buttons</button>
+  <section [ngClass]="['buttons', (buttonsHidden ? 'hidden' : '')]">
     <button (click)="moveToCredits()">Move to credits</button>
     <ng-container *ngIf="isLoggedIn">
+      <button (click)="moveToProfileEdit()">Move to profile</button>
       <button *ngIf="showAdult" (click)="toggleShowAdult()">Switch to SFW</button>
       <button *ngIf="!showAdult" (click)="toggleShowAdult()">Switch to NSFW</button>
     </ng-container>
     <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
   </section>
 </header>
-<!--TODO: Make the header better-->
 <router-outlet></router-outlet>

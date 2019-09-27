@@ -1,0 +1,12 @@
+header {
+  flex-direction: row;
+  h1 {
+    text-align: left;
+  }
+  .hider {
+    display: none;
+  }
+  section.buttons {
+    flex-direction: row;
+  }
+}

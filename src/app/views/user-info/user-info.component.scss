@@ -1,3 +1,25 @@
+@import '../../../mixins/breakpoints.scss';
+
+@include for-size(phone-only) {
+  @import './scss/phone.scss';
+}
+
+@include for-size(tablet-portrait-up) {
+  @import './scss/tablet-portrait.scss';
+}
+
+@include for-size(tablet-landscape-up) {
+  @import './scss/tablet-landscape.scss';
+}
+
+@include for-size(desktop-up) {
+  @import './scss/desktop.scss';
+}
+
+@include for-size(big-desktop-up) {
+  @import './scss/big-desktop.scss';
+}
+
 :host {
   display: grid;
   box-sizing: border-box;
@@ -5,24 +27,26 @@
   height: 100%;
   gap: 1em;
   grid-template-columns: 1fr 9fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   padding: 2em;
 }
 
 header {
   text-align: center;
-  grid-row: 1 / 1;
-  grid-column: 1 / span 2;
+  grid-area: header;
 }
 
 aside {
-  grid-row: 2 / 2;
-  grid-column: 1 / 1;
+  grid-area: aside;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 main {
-  grid-row: 2 / 2;
-  grid-column: 2 / 2;
+  grid-area: main;
   width: 100%;
 }
 
