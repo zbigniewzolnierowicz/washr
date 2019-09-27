@@ -52,3 +52,22 @@ section.buttons {
 }
 // TODO: Make the background something like #262a2b
 // TODO: Make a separate scss for storing colors
+
+.shown {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas:
+    '. . .'
+    '. image .'
+    '. . .';
+  position: fixed;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  img {
+    grid-area: image;
+    width: 100%;
+  }
+}

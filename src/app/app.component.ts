@@ -7,6 +7,7 @@ import { Post } from './interfaces/post';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { NsfwService } from './services/nsfw.service';
+import { ZoomedImageService } from './services/zoomed-image.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,12 @@ export class AppComponent implements OnInit {
   buttonsHidden = true;
 
   // tslint:disable-next-line: max-line-length
-  constructor(public afAuth: AngularFireAuth, private router: Router, private nsfw: NsfwService) {}
+  constructor(
+    public afAuth: AngularFireAuth,
+    private router: Router,
+    private nsfw: NsfwService,
+    public showImg: ZoomedImageService
+  ) {}
 
   ngOnInit() {
     this.afAuth.user.subscribe(u => (u ? (this.isLoggedIn = true) : (this.isLoggedIn = false)));

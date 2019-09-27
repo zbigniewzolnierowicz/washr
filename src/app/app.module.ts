@@ -22,6 +22,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BadgeComponent } from './components/badge/badge.component';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { CreditsComponent } from './views/credits/credits.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,8 @@ import { CreditsComponent } from './views/credits/credits.component';
     LoginPageComponent,
     BadgeComponent,
     ProfileEditComponent,
-    CreditsComponent
-    // TODO: Add a component that can zoom in on the image
+    CreditsComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,4 +54,4 @@ import { CreditsComponent } from './views/credits/credits.component';
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,6 @@
+<ng-container *ngIf="isNSFW | async">
+  <img [src]="thumbnail" [alt]="desc" (click)="manageImage()">
+</ng-container>
+<ng-container *ngIf="!(isNSFW | async)">
+  <img src="../../../assets/NSFW.webp" class="nsfw" alt="NSFW">
+</ng-container>

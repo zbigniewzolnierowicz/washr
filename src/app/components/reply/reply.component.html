@@ -1,7 +1,4 @@
-<ng-container *ngIf="thumb">
-  <img *ngIf="showNsfw" [src]="thumb" [alt]="content.content">
-  <img *ngIf="!showNsfw" src="../../../assets/NSFW.webp" alt="">
-</ng-container>
+<app-image [fullimg]="img" [thumbnail]="thumb" [desc]="content.content" *ngIf="thumb"></app-image>
 <div *ngIf="!isEdit" class="content" [innerHTML]="content.content | markdown"></div>
 <form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
   <textarea formControlName="content" (select)="selectEvent($event)"></textarea>

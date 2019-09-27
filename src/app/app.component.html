@@ -11,4 +11,7 @@
     <button *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
   </section>
 </header>
+<div class="shown" *ngIf="showImg.isShown | async" (click)="showImg.setShown(false)">
+  <img [src]="showImg.imagePath | async" alt="">
+</div>
 <router-outlet></router-outlet>

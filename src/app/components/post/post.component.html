@@ -9,10 +9,7 @@
     </div>
   </header>
   <!-- TODO: Add support for MP4 and WEBM -->
-  <ng-container *ngIf="postimage">
-    <img [src]="thumbimage" [alt]="post.title" *ngIf="showNsfw">
-    <img src="../../../assets/NSFW.webp" alt="" *ngIf="!showNsfw">
-  </ng-container>
+  <app-image [fullimg]="postimage" [thumbnail]="thumbimage" [desc]="post.content" *ngIf="postimage"></app-image>
   <div class="content" [innerHTML]="post.content | markdown" *ngIf="!isEdit"></div>
   <!--TODO: Move form to separate component-->
   <form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
