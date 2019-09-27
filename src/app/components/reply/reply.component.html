@@ -13,9 +13,9 @@
     <button class="hrule" (click)="insertHoriRule($event)">Horizontal rule</button>
   </div>
 </form>
-<div class="buttons" *ngIf="content.postedBy == userUID">
+<section class="buttons" *ngIf="content.postedBy == userUID">
   <button (click)="deleteComment()">Delete reply</button>
   <button (click)="toggleIsEdit()">Edit reply</button>
-</div>
+</section>
 <app-badge [ngClass]="content.userData.userName.length <= 6 ? 'short' : ''" *ngIf="content.userData.userPhoto" [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
-<p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>
+<!--<p>Posted at: {{ content.postedAt.seconds * 1000 | date:'medium' }}</p>-->

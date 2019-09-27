@@ -21,14 +21,30 @@
 }
 
 :host {
-  display: block;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 1vw;
   width: 100%;
+}
+
+.content {
+  grid-area: content;
+}
+
+.buttons {
+  grid-area: buttons;
+}
+
+app-badge {
+  grid-area: badge;
 }
 
 img {
   width: 100%;
   max-height: 30vh;
   object-fit: contain;
+  grid-area: img;
 }
 
 .edit-post {
