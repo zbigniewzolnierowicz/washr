@@ -4,23 +4,23 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODOs
 
-- Move the form outside of the post list
-- Add a function that generates a thumbnail for the uploaded video
-- Implement push notifications
-- Add a detailed thread viewer
-- Make the background something like #262a2b
-- Make a separate scss for storing colors
-- Move most services to NgRx
-- Add some pins for the admin, mod, and significant people
-- Add an option to toggle whether the user wants to see NSFW content or not
-- Implement lazy loading of replies
-- Add more user details
-- Make the same method as above, but with likes.
-- Add licenses
-- Add more ways to log in
-- Make more post lists (i.e.: list of posts for people the user follows)
-- Implement lazy loading of posts
-- Make the page a11y-compliant
+- [ ] Move the form outside of the post list
+- [ ] Add a function that generates a thumbnail for the uploaded video
+- [ ] Implement push notifications
+- [ ] Add a detailed thread viewer
+- [ ] Make the background something like #262a2b
+- [ ] Make a separate scss for storing colors
+- [ ] Move most services to NgRx
+- [ ] Add some pins for the admin, mod, and significant people
+- [ ] Add an option to toggle whether the user wants to see NSFW content or not
+- [ ] Implement lazy loading of replies
+- [ ] Add more user details
+- [ ] Make the same method as above, but with likes.
+- [ ] Add licenses
+- [ ] Add more ways to log in
+- [ ] Make more post lists (i.e.: list of posts for people the user follows)
+- [ ] Implement lazy loading of posts
+- [ ] Make the page a11y-compliant
 
 ## Development server
 
