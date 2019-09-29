@@ -27,7 +27,7 @@
   </div>
   <div class="replies">
     <h2>Replies: {{ post.commentCount }}</h2>
-    <app-reply *ngFor="let reply of replies | async" [content]="reply"></app-reply>
+    <app-reply *ngFor="let reply of replies | async" [content]="reply" [class]="reply.image ? 'has-image' : ''"></app-reply>
   </div>
   <div class="error" *ngIf="error">
     <p>{{ error }}</p>
