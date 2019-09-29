@@ -57,3 +57,4 @@ import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+// TODO: Move most services to NgRx
