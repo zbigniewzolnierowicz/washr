@@ -4,8 +4,10 @@
   <app-wysiwyg formControlName="content"></app-wysiwyg>
   <button type="submit">Submit edit</button>
 </form>
-<section class="buttons" *ngIf="content.postedBy == userUID">
-  <button (click)="deleteComment()">Delete reply</button>
-  <button (click)="toggleIsEdit()">Edit reply</button>
-</section>
-<app-badge [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
+<div class="bottom">
+  <app-badge [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
+  <section class="buttons" *ngIf="content.postedBy == userUID">
+    <button (click)="deleteComment()">Delete reply</button>
+    <button (click)="toggleIsEdit()">Edit reply</button>
+  </section>
+</div>

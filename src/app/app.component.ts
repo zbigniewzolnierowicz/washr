@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
-import { PostsService } from './services/posts.service';
-import { FileUploadService } from './services/file-upload.service';
-import { Post } from './interfaces/post';
+import { tap, map, switchMap, flatMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { NsfwService } from './services/nsfw.service';
 import { ZoomedImageService } from './services/zoomed-image.service';
+import { UserDataService } from './services/user-data.service';
+import { User } from './interfaces/user';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +20,22 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean;
   showAdult: boolean;
   buttonsHidden = true;
+  userInfo: User;
 
   // tslint:disable-next-line: max-line-length
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
     private nsfw: NsfwService,
-    public showImg: ZoomedImageService
+    public showImg: ZoomedImageService,
+    public uS: UserDataService,
+    private db: AngularFirestore
   ) {}
 
   ngOnInit() {
     this.afAuth.user.subscribe(u => (u ? (this.isLoggedIn = true) : (this.isLoggedIn = false)));
     this.nsfw.nsfwStatus.subscribe(nsfw => (this.showAdult = nsfw));
+    this.uS.loggedInUserData().subscribe(user => (this.userInfo = user));
   }
 
   hideButtons() {

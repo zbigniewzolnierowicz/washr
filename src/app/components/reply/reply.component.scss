@@ -22,8 +22,8 @@
 
 :host {
   display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: auto 1fr 3fr;
   column-gap: 1vw;
   width: 100%;
 }
@@ -32,12 +32,13 @@
   grid-area: content;
 }
 
-.buttons {
-  grid-area: buttons;
-}
-
-app-badge {
-  grid-area: badge;
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-area: bottom;
 }
 
 img {

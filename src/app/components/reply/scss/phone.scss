@@ -2,11 +2,11 @@
   grid-template-areas:
     'content content content'
     'content content content'
-    'buttons buttons badge';
+    'bottom bottom bottom';
   &.has-image {
     grid-template-areas:
       'img img img'
       'content content content'
-      'buttons buttons badge';
+      'bottom bottom bottom';
   }
 }

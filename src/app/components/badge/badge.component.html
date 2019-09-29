@@ -1,5 +1,5 @@
-<a [routerLink]="['/userinfo', link]">
-  <img [src]="img" alt="">
+<a [routerLink]="link ? ['/userinfo', link] : ['/profile']">
+  <img [src]="img || 'https://via.placeholder.com/128'" alt="">
   <p><ng-content></ng-content></p>
   <!--TODO: Add some pins for the admin, mod, and significant people-->
 </a>
