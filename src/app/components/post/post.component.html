@@ -18,12 +18,15 @@
   <div class="newReply">
     <button (click)="toggleIsReply()">Reply</button>
     <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
-    <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form *ngIf="isReply">
-      <app-wysiwyg formControlName="content"></app-wysiwyg>
-      <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
-      <app-upload formControlName="image"></app-upload>
-      <button type="submit">Send</button>
-    </form>
+    <div class="reply" *ngIf="isReply">
+      <form [formGroup]="reply" (ngSubmit)="onSubmit()" #form>
+        <app-wysiwyg formControlName="content"></app-wysiwyg>
+        <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
+        <app-upload formControlName="image"></app-upload>
+        <button type="submit">Send</button>
+      </form>
+      <div class="preview" [innerHTML]="reply.value.content | markdown"></div>
+    </div>
   </div>
   <div class="replies">
     <h2>Replies: {{ post.commentCount }}</h2>

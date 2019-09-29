@@ -80,6 +80,17 @@ header {
 
 .newReply {
   grid-area: newReply;
+  .reply {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    form {
+      grid-area: form;
+    }
+    .preview {
+      grid-area: preview;
+    }
+  }
 }
 
 .replies {

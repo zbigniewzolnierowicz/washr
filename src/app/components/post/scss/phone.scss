@@ -28,3 +28,11 @@ header {
     grid-row: 4 / 4;
   }
 }
+
+.newReply {
+  .reply {
+    grid-template-areas:
+      'form form'
+      'preview preview';
+  }
+}

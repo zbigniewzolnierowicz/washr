@@ -31,3 +31,11 @@ header {
     grid-row: 1 / 2;
   }
 }
+
+.newReply {
+  .reply {
+    grid-template-areas:
+      'form preview'
+      'form preview';
+  }
+}
