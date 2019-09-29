@@ -8,4 +8,4 @@
   <button (click)="deleteComment()">Delete reply</button>
   <button (click)="toggleIsEdit()">Edit reply</button>
 </section>
-<app-badge [ngClass]="content.userData.userName.length <= 6 ? 'short' : ''" *ngIf="content.userData.userPhoto" [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>
+<app-badge [img]="content.userData.userPhoto" [link]="content.postedBy">{{ content.userData.userName }}</app-badge>

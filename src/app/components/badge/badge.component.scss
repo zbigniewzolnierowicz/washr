@@ -26,11 +26,6 @@
   flex-direction: row;
   width: fit-content;
   background: gray;
-  border-radius: 12.5% / 50%;
-}
-
-:host.short {
-  border-radius: 25% / 50%;
 }
 
 a {
@@ -55,5 +50,4 @@ p {
 img {
   object-fit: cover;
   max-height: 100%;
-  clip-path: circle(50% at 50% 50%);
 }
