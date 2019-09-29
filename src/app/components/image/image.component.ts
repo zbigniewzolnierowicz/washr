@@ -12,17 +12,28 @@ export class ImageComponent implements OnInit {
   @Input() thumbnail: string;
   @Input() fullimg: string;
   @Input() desc: string;
-  isNSFW: Observable<boolean>;
+  @Input() nsfw: boolean;
+  showImg: boolean;
   showFull = false;
 
-  constructor(public showImg: ZoomedImageService, private nsfw: NsfwService) {}
+  constructor(public showImgS: ZoomedImageService, private nsfwS: NsfwService) {}
 
   ngOnInit() {
-    this.isNSFW = this.nsfw.nsfwStatus;
+    this.nsfwS.nsfwStatus.subscribe(status => {
+      if (status === true) {
+        this.showImg = true;
+      } else {
+        if (this.nsfw === false) {
+          this.showImg = true;
+        } else {
+          this.showImg = false;
+        }
+      }
+    });
   }
 
   manageImage() {
-    this.showImg.setShown(true);
-    this.showImg.setImagePath(this.fullimg);
+    this.showImgS.setShown(true);
+    this.showImgS.setImagePath(this.fullimg);
   }
 }
