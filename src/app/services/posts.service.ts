@@ -31,7 +31,7 @@ export class PostsService {
   getCommentsForPost(post: Post) {
     return this.db
       .doc(post.ref)
-      .collection('comments', query => query.orderBy('postedAt', 'desc'))
+      .collection('comments', query => query.orderBy('postedAt', 'asc'))
       .snapshotChanges()
       .pipe(
         map(actions =>
