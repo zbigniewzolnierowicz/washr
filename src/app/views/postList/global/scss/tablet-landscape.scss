@@ -1,0 +1,8 @@
+:host ::ng-deep {
+  display: grid;
+  height: 100%;
+  grid-template-areas:
+    'form posts'
+    'preview posts'
+    'preview posts';
+}

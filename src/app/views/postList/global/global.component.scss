@@ -21,15 +21,28 @@
 }
 
 :host ::ng-deep {
-  display: flex;
   background: rgba(75, 75, 75, 0.5);
-  flex-direction: column;
-  align-items: center;
   padding: 0 5vw;
-  height: 100%;
-  form {
-    margin: 0 auto;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr 2fr;
+  gap: 1em 1ch;
+
+  .posts {
+    grid-area: posts;
+    flex-direction: column;
+    align-items: center;
     display: flex;
+  }
+
+  .preview {
+    grid-area: preview;
+  }
+
+  form {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    padding: 1em;
     flex-direction: column;
   }
 

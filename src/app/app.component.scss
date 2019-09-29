@@ -22,12 +22,16 @@
 
 :host {
   display: block;
-  height: fit-content;
+  height: 100%;
+  box-sizing: border-box;
   width: 100%;
 }
 
 header {
-  position: sticky;
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  height: 8vh;
   top: 0;
   color: white;
   background: black;
@@ -45,6 +49,12 @@ header {
       color: white;
     }
   }
+}
+
+.router {
+  box-sizing: border-box;
+  padding: 8vh 0 0 0;
+  height: 100%;
 }
 
 section.buttons {
