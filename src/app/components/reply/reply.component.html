@@ -1,4 +1,4 @@
-<app-image [fullimg]="img" [thumbnail]="thumb" [desc]="content.content" *ngIf="thumb"></app-image>
+<app-image [fullimg]="img" [thumbnail]="thumb" [desc]="content.content" [nsfw]="content.isNSFW" *ngIf="thumb"></app-image>
 <div *ngIf="!isEdit" class="content" [innerHTML]="content.content | markdown"></div>
 <form [formGroup]="postEdit" (ngSubmit)="onSubmitEdit()" *ngIf="isEdit" class="edit-post">
   <app-wysiwyg formControlName="content"></app-wysiwyg>
