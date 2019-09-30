@@ -1,5 +1,8 @@
+<div *ngIf="userData$ | async as user">
+  <p>{{ user | json }}</p>
+</div>
 <form [formGroup]="profileEdit" (ngSubmit)="onSubmit()">
-  <label>Bio: <textarea name="" id="" cols="30" rows="10" formControlName="bio"></textarea></label>
-  <button type="submit">Submit</button>
-</form>
-<p *ngIf="status">{{ status }}</p>
+    <label>Bio: <textarea name="" id="" cols="30" rows="10" formControlName="bio"></textarea></label>
+    <button type="submit">Submit</button>
+  </form>
+  <p *ngIf="status">{{ status }}</p>

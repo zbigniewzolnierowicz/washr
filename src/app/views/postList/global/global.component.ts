@@ -6,7 +6,9 @@ import { Post } from 'src/app/interfaces/post';
 import { finalize } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { firestore } from 'firebase/app';
 import { AngularFireStorageReference } from '@angular/fire/storage';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-global',
@@ -14,7 +16,7 @@ import { AngularFireStorageReference } from '@angular/fire/storage';
   styleUrls: ['./global.component.scss']
 })
 export class GlobalComponent implements OnInit {
-  posts: Observable<any>;
+  posts$: Observable<any>;
   @ViewChild('form', { static: false }) form: ElementRef;
   post = new FormGroup({
     title: new FormControl(null, Validators.required),
@@ -26,11 +28,27 @@ export class GlobalComponent implements OnInit {
   error: string;
   start: number;
   end: number;
+  placeholderPost: Post;
 
   constructor(private pS: PostsService, private afAuth: AngularFireAuth, private upS: FileUploadService) {}
 
   ngOnInit() {
-    this.posts = this.pS.getAllPosts;
+    this.posts$ = this.pS.getAllPosts;
+    this.placeholderPost = {
+      id: '0',
+      title: 'Loading...',
+      // tslint:disable-next-line: max-line-length
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis distinctio, ea alias fugiat vel reprehenderit id nemo architecto mollitia, harum impedit eaque molestias commodi nisi! Sequi architecto modi ea blanditiis!',
+      postedAt: new Timestamp(0, 0),
+      postedBy: '0',
+      userData: {
+        userID: '0',
+        userName: 'Placeholder',
+        userPhoto: 'https://via.placeholder.com/256'
+      },
+      commentCount: 0
+    };
   }
 
   closeError() {

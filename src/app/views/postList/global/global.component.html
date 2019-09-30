@@ -16,7 +16,19 @@
   <h1>{{ post.value.title }}</h1>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
-<div class="posts" *ngIf="posts">
+<div class="posts" *ngIf="(posts$ | async) as posts; else loading">
   <!--TODO: Implement lazy loading of posts-->
-  <app-post *ngFor="let post of posts | async" [ngClass]="post.image ? 'image' : 'text'" [post]="post"></app-post>
+  <app-post *ngFor="let post of posts" [ngClass]="post.image ? 'image' : 'text'" [post]="post"></app-post>
 </div>
+
+<ng-template #loading>
+  <div class="posts">
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+    <app-post [post]="placeholderPost" [ngClass]="['text', 'placehold']"></app-post>
+  </div>
+</ng-template>

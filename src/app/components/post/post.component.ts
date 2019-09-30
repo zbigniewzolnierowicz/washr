@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, HostBinding } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { NsfwService } from 'src/app/services/nsfw.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { firestore } from 'firebase/app';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-post',
@@ -20,6 +21,7 @@ import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/s
 export class PostComponent implements OnInit {
   @Input() post: Post;
   @ViewChild('reply', { static: false }) replyForm: ElementRef;
+  @HostBinding('class.placeholder') public isPlaceholder = false;
   isReply = false;
   reply = new FormGroup({
     content: new FormControl(null, Validators.required),
@@ -76,6 +78,9 @@ export class PostComponent implements OnInit {
         thumbRef.getDownloadURL().subscribe(img => (this.thumbimage = img));
         imageRef.getDownloadURL().subscribe(img => (this.postimage = img));
       });
+    }
+    if (this.post.userData) {
+      this.isPlaceholder = false;
     }
   }
 

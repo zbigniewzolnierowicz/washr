@@ -1,4 +1,5 @@
 @import '../../../mixins/breakpoints.scss';
+@import '../../../assets/fonts/BLOKKNeue-Regular/blokkfont.css';
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';
@@ -29,6 +30,10 @@
   gap: 1vh 1vw;
   grid-template-rows: auto auto auto auto auto auto auto;
   grid-template-columns: 1vw 1fr 3fr 1vw;
+}
+
+:host.placehold {
+  font-family: 'BLOKK';
 }
 
 :host.text {
