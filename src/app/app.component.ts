@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router, RouterEvent, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, RouterEvent, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 import { NsfwService } from './services/nsfw.service';
 import { ZoomedImageService } from './services/zoomed-image.service';
 import { UserDataService } from './services/user-data.service';
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         this.loading = true;
-      } else if (event instanceof NavigationEnd) {
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
         this.loading = false;
       }
     });
