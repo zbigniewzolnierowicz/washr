@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
-import { LoginPageComponent } from './views/login-page/login-page.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { CreditsComponent } from './views/credits/credits.component';
 
-const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['']);
+const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['auth', 'login']);
 const redirectLoggedInToTimeline = redirectLoggedInTo(['timeline']);
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPageComponent,
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
     ...canActivate(redirectLoggedInToTimeline)
   },
   {
@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: CreditsComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule)
   }
   // TODO: Add a detailed thread viewer
 ];
@@ -42,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

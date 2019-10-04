@@ -16,14 +16,13 @@ import { PostComponent } from './components/post/post.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
-import { LoginPageComponent } from './views/login-page/login-page.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BadgeComponent } from './components/badge/badge.component';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { CreditsComponent } from './views/credits/credits.component';
 import { ImageComponent } from './components/image/image.component';
 import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
+import { LandingComponent } from './views/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +33,12 @@ import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
     ReplyComponent,
     GlobalComponent,
     UserInfoComponent,
-    LoginPageComponent,
     BadgeComponent,
     ProfileEditComponent,
     CreditsComponent,
     ImageComponent,
-    WysiwygComponent
+    WysiwygComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,7 @@ import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
     AngularFireStorageModule, // Firebase Storage module
     AngularFirePerformanceModule // Firebase Performance module
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

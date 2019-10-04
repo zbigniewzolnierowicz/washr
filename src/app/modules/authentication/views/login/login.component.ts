@@ -4,11 +4,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginComponent implements OnInit {
   googleProvider = new auth.GoogleAuthProvider();
   githubProvider = new auth.GithubAuthProvider();
 
