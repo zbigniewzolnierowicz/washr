@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule)
+    loadChildren: () => import('./routes/authentication/authentication.module').then(m => m.AuthenticationModule)
   }
   // TODO: Add a detailed thread viewer
 ];
