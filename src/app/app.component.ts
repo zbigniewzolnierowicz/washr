@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { tap, map, switchMap, flatMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, RouterEvent, NavigationEnd, NavigationStart } from '@angular/router';
 import { NsfwService } from './services/nsfw.service';
 import { ZoomedImageService } from './services/zoomed-image.service';
 import { UserDataService } from './services/user-data.service';
 import { User } from './interfaces/user';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +18,7 @@ export class AppComponent implements OnInit {
   showAdult: boolean;
   buttonsHidden = true;
   userInfo: User;
+  loading: boolean;
 
   // tslint:disable-next-line: max-line-length
   constructor(
@@ -28,9 +26,16 @@ export class AppComponent implements OnInit {
     private router: Router,
     private nsfw: NsfwService,
     public showImg: ZoomedImageService,
-    public uS: UserDataService,
-    private db: AngularFirestore
-  ) {}
+    public uS: UserDataService
+  ) {
+    router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof NavigationStart) {
+        this.loading = true;
+      } else if (event instanceof NavigationEnd) {
+        this.loading = false;
+      }
+    });
+  }
 
   ngOnInit() {
     this.afAuth.user.subscribe(u => (u ? (this.isLoggedIn = true) : (this.isLoggedIn = false)));
