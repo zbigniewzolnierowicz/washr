@@ -29,20 +29,22 @@ export class PostsService {
   }
 
   getCommentsForPost(post: Post) {
-    return this.db
-      .doc(post.ref)
-      .collection('comments', query => query.orderBy('postedAt', 'asc'))
-      .snapshotChanges()
-      .pipe(
-        map(actions =>
-          actions.map(a => {
-            const data = a.payload.doc.data() as Post;
-            const id = a.payload.doc.id;
-            const ref = a.payload.doc.ref;
-            return { id, ref, ...data };
-          })
-        )
-      );
+    try {
+      return this.db
+        .doc(post.ref)
+        .collection('comments', query => query.orderBy('postedAt', 'asc'))
+        .snapshotChanges()
+        .pipe(
+          map(actions =>
+            actions.map(a => {
+              const data = a.payload.doc.data() as Post;
+              const id = a.payload.doc.id;
+              const ref = a.payload.doc.ref;
+              return { id, ref, ...data };
+            })
+          )
+        );
+    } catch (e) {}
   }
 
   createPost(post: Post) {
