@@ -1,4 +1,4 @@
-@import '../../../../mixins/breakpoints.scss';
+@import '../../../../../mixins/breakpoints.scss';
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';

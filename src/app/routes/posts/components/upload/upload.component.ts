@@ -19,14 +19,13 @@ export class UploadComponent implements ControlValueAccessor {
   onChange: Function;
   file: File | null = null;
 
-  @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
+  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
     const file = event && event.item(0);
     this.onChange(file);
     this.file = file;
   }
 
-  constructor( private host: ElementRef<HTMLInputElement> ) {
-  }
+  constructor(private host: ElementRef<HTMLInputElement>) {}
 
   writeValue(value: null) {
     // clear file input
@@ -35,12 +34,10 @@ export class UploadComponent implements ControlValueAccessor {
   }
 
   // tslint:disable-next-line: ban-types
-  registerOnChange( fn: Function ) {
+  registerOnChange(fn: Function) {
     this.onChange = fn;
   }
 
   // tslint:disable-next-line: ban-types
-  registerOnTouched( fn: Function ) {
-  }
-
+  registerOnTouched(fn: Function) {}
 }

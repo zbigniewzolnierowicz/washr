@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GlobalComponent } from './views/postList/global/global.component';
 import { UserInfoComponent } from './views/user-info/user-info.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { CreditsComponent } from './views/credits/credits.component';
 
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['auth', 'login']);
-const redirectLoggedInToTimeline = redirectLoggedInTo(['timeline']);
+const redirectLoggedInToTimeline = redirectLoggedInTo(['posts']);
 
 const routes: Routes = [
   {
@@ -15,11 +14,6 @@ const routes: Routes = [
     redirectTo: 'auth/login',
     pathMatch: 'full',
     ...canActivate(redirectLoggedInToTimeline)
-  },
-  {
-    path: 'timeline',
-    component: GlobalComponent,
-    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'userinfo/:id',
@@ -38,6 +32,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./routes/authentication/authentication.module').then(m => m.AuthenticationModule)
+  },
+  {
+    path: 'posts',
+    loadChildren: () => import('./routes/posts/posts.module').then(m => m.PostsModule)
   }
   // TODO: Add a detailed thread viewer
 ];

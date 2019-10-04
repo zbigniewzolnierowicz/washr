@@ -1,5 +1,5 @@
-@import '../../../mixins/breakpoints.scss';
-@import '../../../assets/fonts/BLOKKNeue-Regular/blokkfont.css';
+@import '../../../../../mixins/breakpoints.scss';
+@import '../../../../../assets/fonts/BLOKKNeue-Regular/blokkfont.css';
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';

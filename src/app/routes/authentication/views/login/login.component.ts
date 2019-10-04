@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
   logInWithGoogle() {
-    this.afAuth.auth.signInWithPopup(this.googleProvider).then(() => this.router.navigate(['timeline']));
+    this.afAuth.auth.signInWithPopup(this.googleProvider).then(() => this.router.navigate(['posts']));
   }
   logInWithGithub() {
-    this.afAuth.auth.signInWithPopup(this.githubProvider).then(() => this.router.navigate(['timeline']));
+    this.afAuth.auth.signInWithPopup(this.githubProvider).then(() => this.router.navigate(['posts']));
   }
   logInWithSomethingElse() {
     alert('Not implemented yet!');

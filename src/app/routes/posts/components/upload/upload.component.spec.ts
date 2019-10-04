@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GlobalComponent } from './global.component';
+import { UploadComponent } from './upload.component';
 
-describe('GlobalComponent', () => {
-  let component: GlobalComponent;
-  let fixture: ComponentFixture<GlobalComponent>;
+describe('UploadComponent', () => {
+  let component: UploadComponent;
+  let fixture: ComponentFixture<UploadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GlobalComponent ]
-    })
-    .compileComponents();
+      declarations: [UploadComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GlobalComponent);
+    fixture = TestBed.createComponent(UploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,9 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BadgeComponent implements OnInit {
   @Input() link: string;
   @Input() img: string;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

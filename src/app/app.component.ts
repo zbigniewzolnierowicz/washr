@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   moveToTimeline() {
-    this.router.navigate(['timeline']);
+    this.router.navigate(['posts']);
   }
 
   moveToProfileEdit() {

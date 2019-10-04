@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    ...canActivate(redirectLoggedInTo(['timeline']))
+    ...canActivate(redirectLoggedInTo(['posts']))
   }
 ];
 
