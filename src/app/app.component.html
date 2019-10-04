@@ -14,5 +14,7 @@
   <img [src]="showImg.imagePath | async" alt="">
 </div>
 <div class="router">
-  <router-outlet></router-outlet>
+  <router-outlet>
+    <app-spinner *ngIf="loading"></app-spinner>
+  </router-outlet>
 </div>

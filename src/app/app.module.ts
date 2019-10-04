@@ -23,6 +23,7 @@ import { CreditsComponent } from './views/credits/credits.component';
 import { ImageComponent } from './components/image/image.component';
 import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
 import { LandingComponent } from './views/landing/landing.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LandingComponent } from './views/landing/landing.component';
     CreditsComponent,
     ImageComponent,
     WysiwygComponent,
-    LandingComponent
+    LandingComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { LandingComponent } from './views/landing/landing.component';
     AngularFirePerformanceModule // Firebase Performance module
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [SpinnerComponent]
 })
 export class AppModule {}
 // TODO: Move most services to NgRx
