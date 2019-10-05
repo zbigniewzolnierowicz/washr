@@ -88,23 +88,4 @@ main ::ng-deep {
       max-height: 30vh;
     }
   }
-  table {
-    border-spacing: 0;
-    thead {
-      tr {
-        background: $tableHeaderBG;
-        color: $tableHeaderFG;
-      }
-    }
-    tbody {
-      tr:nth-child(even) {
-        background: $tableUnstripedBG;
-        color: $tableUnstripedFG;
-      }
-      tr:nth-child(odd) {
-        background: $tableStripedBG;
-        color: $tableStripedFG;
-      }
-    }
-  }
 }

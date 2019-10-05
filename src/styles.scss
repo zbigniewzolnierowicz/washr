@@ -42,6 +42,26 @@ h5 {
   margin: 0;
 }
 
+table {
+  border-spacing: 0;
+  thead {
+    tr {
+      background: $tableHeaderBG;
+      color: $tableHeaderFG;
+    }
+  }
+  tbody {
+    tr:nth-child(even) {
+      background: $tableUnstripedBG;
+      color: $tableUnstripedFG;
+    }
+    tr:nth-child(odd) {
+      background: $tableStripedBG;
+      color: $tableStripedFG;
+    }
+  }
+}
+
 @font-face {
   font-family: 'Monoid';
   src: url('./assets/fonts/Monoid-Italic.ttf') format('truetype');
