@@ -171,3 +171,16 @@ pre {
 .xml .hljs-cdata {
   opacity: 0.5;
 }
+
+::-webkit-scrollbar-track {
+  background-color: $replyBG;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: $replyBG;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $mainBG;
+}
