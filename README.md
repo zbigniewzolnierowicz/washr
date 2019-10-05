@@ -22,6 +22,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Implement lazy loading of posts
 - [ ] Make the page a11y-compliant
 - [x] Made the security rules better
+- [ ] Add a list of recent posts to profile view
 
 ## Development server
 

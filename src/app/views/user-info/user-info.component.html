@@ -1,12 +1,15 @@
 <ng-container *ngIf="userInfo | async as userInfo">
-  <header>
-    <h1>{{ userInfo.displayName }}</h1>
-  </header>
   <main [innerHTML]="userInfo.bio | markdown">
   </main>
   <aside>
-    <div class="avatar">
+    <header>
+      <h1>{{ userInfo.displayName }}</h1>
+    </header>
+    <section class="avatar">
       <img [src]="userInfo.photoURL" alt="">
-    </div>
+    </section>
+    <section class="recentPosts">
+      <h2>Here will appear some recent posts... soon enough</h2>
+    </section>
   </aside>
 </ng-container>
