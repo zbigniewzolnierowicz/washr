@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, HostBinding } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import { Comment } from 'src/app/interfaces/comment';
 import { PostsService } from 'src/app/services/posts.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -20,6 +20,7 @@ import Timestamp = firestore.Timestamp;
 })
 export class PostComponent implements OnInit {
   @Input() post: Post;
+  @Input() limit?: number;
   @ViewChild('reply', { static: false }) replyForm: ElementRef;
   @HostBinding('class.placeholder') public isPlaceholder = false;
   isReply = false;
@@ -42,6 +43,7 @@ export class PostComponent implements OnInit {
   thumbimage: string;
   postimage: string;
   fileMetadata: any;
+  displayShowMore = false;
 
   constructor(
     private pS: PostsService,
@@ -57,7 +59,10 @@ export class PostComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.replies = this.pS.getCommentsForPost(this.post);
+    this.replies = this.pS.getCommentsForPost(this.post, this.limit || null);
+    if (this.post.commentCount > this.limit) {
+      this.displayShowMore = true;
+    }
     this.userInfo = this.uS.getUserData(this.post.userData.userID);
     this.nsfw.nsfwStatus.subscribe(nsfw => {
       if (nsfw === false) {

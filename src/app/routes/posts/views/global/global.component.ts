@@ -11,7 +11,7 @@ import { AngularFireStorageReference } from '@angular/fire/storage';
 import Timestamp = firestore.Timestamp;
 
 @Component({
-  selector: 'app-global',
+  selector: 'app-view-global',
   templateUrl: './global.component.html',
   styleUrls: ['./global.component.scss']
 })
@@ -37,8 +37,8 @@ export class GlobalComponent implements OnInit {
     this.placeholderPost = {
       id: '0',
       title: 'Loading...',
-      // tslint:disable-next-line: max-line-length
       content:
+        // tslint:disable-next-line: max-line-length
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis distinctio, ea alias fugiat vel reprehenderit id nemo architecto mollitia, harum impedit eaque molestias commodi nisi! Sequi architecto modi ea blanditiis!',
       postedAt: new Timestamp(0, 0),
       postedBy: '0',

@@ -15,7 +15,7 @@
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
 <div class="posts" *ngIf="(posts$ | async) as posts; else loading">
-  <app-post *ngFor="let post of posts" [ngClass]="post.image ? 'image' : 'text'" [post]="post"></app-post>
+  <app-post *ngFor="let post of posts" [ngClass]="post.image ? 'image' : 'text'" [post]="post" [limit]="2"></app-post>
 </div>
 
 <ng-template #loading>

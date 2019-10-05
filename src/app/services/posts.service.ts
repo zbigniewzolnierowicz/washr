@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
 import { Comment } from '../interfaces/comment';
 import { firestore } from 'firebase/app';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +28,18 @@ export class PostsService {
         )
       );
   }
+  getPost(post: string) {
+    return this.db
+      .collection('posts')
+      .doc(post)
+      .get();
+  }
 
-  getCommentsForPost(post: Post) {
-    try {
+  getCommentsForPost(post: Post, limit?: number) {
+    if (post.id !== '0') {
       return this.db
         .doc(post.ref)
-        .collection('comments', query => query.orderBy('postedAt', 'asc'))
+        .collection('comments', query => query.orderBy('postedAt', 'desc').limit(limit || Infinity))
         .snapshotChanges()
         .pipe(
           map(actions =>
@@ -44,7 +51,7 @@ export class PostsService {
             })
           )
         );
-    } catch (e) {}
+    }
   }
 
   createPost(post: Post) {

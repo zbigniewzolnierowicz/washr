@@ -2,7 +2,7 @@
   <header>
     <h2 class="postTitle">{{ post.title }}</h2>
     <app-badge *ngIf="post.userData" [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
-    <h3 class="timestamp">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</h3>
+    <h3 class="timestamp"><a [routerLink]="['/posts', 'post', post.id]">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</a></h3>
     <div class="buttons" *ngIf="post.postedBy == userUID">
       <button (click)="deletePost()">Delete post</button>
       <button (click)="toggleIsEdit()">Edit post</button>
@@ -29,6 +29,7 @@
   </div>
   <div class="replies">
     <h2>Replies: {{ post.commentCount }}</h2>
+    <h3 *ngIf="displayShowMore">More replies in detailed thread view...</h3>
     <app-reply *ngFor="let reply of replies | async" [content]="reply" [class]="reply.image ? 'has-image' : ''"></app-reply>
   </div>
   <div class="error" *ngIf="error">

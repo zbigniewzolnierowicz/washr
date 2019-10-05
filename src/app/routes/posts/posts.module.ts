@@ -9,9 +9,10 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { SharedComponentsModule } from 'src/app/modules/shared-components/shared-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PostViewComponent } from './views/post/post.component';
 
 @NgModule({
-  declarations: [PostsComponent, GlobalComponent, PostComponent, UploadComponent, ReplyComponent],
+  declarations: [PostsComponent, GlobalComponent, PostComponent, UploadComponent, ReplyComponent, PostViewComponent],
   imports: [CommonModule, PostsRoutingModule, ReactiveFormsModule, SharedComponentsModule]
 })
 export class PostsModule {}
