@@ -1,4 +1,5 @@
 @import '../../../mixins/breakpoints.scss';
+@import '../../../mixins/colorscheme.scss';
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';
@@ -59,12 +60,13 @@ main ::ng-deep {
   table {
     border-spacing: 0;
     thead {
-      background: gray;
-      color: white;
+      background: $tableUnstripedBG;
+      color: $tableUnstripedFG;
     }
     tbody {
       tr:nth-child(odd) {
-        background: rgb(221, 221, 221);
+        background: $tableStripedBG;
+        color: $tableStripedFG;
       }
     }
   }

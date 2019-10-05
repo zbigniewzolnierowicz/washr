@@ -1,4 +1,5 @@
 @import '../../../../../mixins/breakpoints.scss';
+@import '../../../../../mixins/colorscheme.scss';
 @import '../../../../../assets/fonts/BLOKKNeue-Regular/blokkfont.css';
 
 @include for-size(phone-only) {
@@ -74,8 +75,8 @@ header {
   gap: 1vh 1vw;
   grid-area: header;
   flex-direction: column;
-  background: black;
-  color: white;
+  background: $postHeaderBG;
+  color: $postHeaderFG;
   padding: 1em;
 }
 
