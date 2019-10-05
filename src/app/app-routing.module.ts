@@ -37,7 +37,6 @@ const routes: Routes = [
     path: 'posts',
     loadChildren: () => import('./routes/posts/posts.module').then(m => m.PostsModule)
   }
-  // TODO: Add a detailed thread viewer
 ];
 
 @NgModule({

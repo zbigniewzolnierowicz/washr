@@ -73,7 +73,6 @@ export class PostsService {
     });
   }
 
-  // TODO: Make the same method as above, but with likes.
   delete(subject: Post | Comment) {
     if (subject.image) {
       this.st.ref(subject.image).delete();

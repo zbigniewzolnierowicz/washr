@@ -38,4 +38,3 @@ import { SharedComponentsModule } from './modules/shared-components/shared-compo
   exports: [CommonModule, ReactiveFormsModule]
 })
 export class AppModule {}
-// TODO: Move most services to NgRx

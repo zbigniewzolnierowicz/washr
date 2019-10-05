@@ -100,6 +100,3 @@ addUserDataToPost = functions.firestore.document('posts/{postId}').onWrite(async
     return error;
   }
 });
-
-// TODO: Add a function that generates a thumbnail for the uploaded video
-// TODO: Implement push notifications
