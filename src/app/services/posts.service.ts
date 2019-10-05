@@ -39,7 +39,7 @@ export class PostsService {
     if (post.id !== '0') {
       return this.db
         .doc(post.ref)
-        .collection('comments', query => query.orderBy('postedAt', 'desc').limit(limit))
+        .collection('comments', query => query.orderBy('postedAt', 'desc').limit(limit || 0))
         .snapshotChanges()
         .pipe(
           map((actions: any) => {
