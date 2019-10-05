@@ -20,6 +20,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Make more post lists (i.e.: list of posts for people the user follows)
 - [ ] Implement lazy loading of posts
 - [ ] Make the page a11y-compliant
+- [x] Made the security rules better
 
 ## Development server
 
