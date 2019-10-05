@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Converter } from 'showdown';
 import showdownHighlight from 'showdown-highlight';
+import 'showdown-twitter';
 
 const parser = new Converter({
   emoji: true,
-  extensions: [showdownHighlight]
+  extensions: [showdownHighlight, 'twitter']
 });
 
 @Pipe({
