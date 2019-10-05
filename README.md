@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Add a function that generates a thumbnail for the uploaded video
 - [ ] Implement push notifications
 - [ ] Add a detailed thread viewer
-- [ ] Make the background something like #262a2b
+- [x] Make the background something like #262a2b
 - [x] Make a separate scss for storing colors
 - [ ] Add some pins for the admin, mod, and significant people
 - [x] Add an option to toggle whether the user wants to see NSFW content or not

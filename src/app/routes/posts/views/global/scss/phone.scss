@@ -4,7 +4,7 @@
   flex-direction: column;
   form {
     width: 100%;
-    padding: 0em;
+    margin-top: 2vh;
   }
   .posts {
     grid-area: posts;
@@ -12,5 +12,6 @@
     flex-direction: column;
     align-items: center;
     display: flex;
+    padding: 1vh 1vw;
   }
 }
