@@ -42,14 +42,24 @@ export class PostsService {
         .collection('comments', query => query.orderBy('postedAt', 'desc').limit(limit || Infinity))
         .snapshotChanges()
         .pipe(
-          map(actions =>
-            actions.map(a => {
-              const data = a.payload.doc.data() as Post;
-              const id = a.payload.doc.id;
-              const ref = a.payload.doc.ref;
-              return { id, ref, ...data };
-            })
-          )
+          map((actions: any) => {
+            return actions
+              .map(a => {
+                const data = a.payload.doc.data() as Post;
+                const id = a.payload.doc.id;
+                const ref = a.payload.doc.ref;
+                return { id, ref, ...data };
+              })
+              .sort((a, b) => {
+                if (a.postedAt > b.postedAt) {
+                  return 1;
+                }
+                if (a.postedAt < b.postedAt) {
+                  return -1;
+                }
+                return 0;
+              });
+          })
         );
     }
   }
