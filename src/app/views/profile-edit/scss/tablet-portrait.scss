@@ -1,0 +1,12 @@
+form {
+  grid-template-areas:
+    'aside main'
+    'aside main'
+    'aside main';
+}
+main {
+  overflow: auto;
+  grid-template-areas:
+    'preview'
+    'input';
+}

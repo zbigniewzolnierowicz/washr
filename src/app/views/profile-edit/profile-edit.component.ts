@@ -11,7 +11,8 @@ import { User } from 'src/app/interfaces/user';
 })
 export class ProfileEditComponent implements OnInit {
   profileEdit = new FormGroup({
-    bio: new FormControl(null)
+    bio: new FormControl(null),
+    displayName: new FormControl(null)
   });
   status: string;
   userData$: Observable<User>;
@@ -19,12 +20,12 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
     this.userData$ = this.udS.loggedInUserData();
-    this.userData$.subscribe(data => this.profileEdit.setValue({ bio: data.bio }));
+    this.userData$.subscribe(data => this.profileEdit.setValue({ bio: data.bio, displayName: data.displayName }));
   }
 
   onSubmit() {
     this.udS
-      .changeBio(this.profileEdit.value.bio)
+      .updateUserData({ bio: this.profileEdit.value.bio as string, displayName: this.profileEdit.value.displayName })
       .then(() => {
         this.status = 'Bio updated!';
       })

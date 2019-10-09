@@ -10,12 +10,12 @@ import { User } from '../interfaces/user';
 export class UserDataService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
-  changeBio(bio: string) {
+  updateUserData(data: { bio: string; displayName: string }) {
     const userID = this.afAuth.auth.currentUser.uid;
     return this.db
       .collection('users')
       .doc(userID)
-      .update({ bio });
+      .update({ ...data });
   }
 
   loggedInUserData() {

@@ -1,0 +1,19 @@
+form {
+  grid-template-areas:
+    'aside aside'
+    'main main'
+    'main main';
+}
+aside {
+  button {
+    height: 5vh;
+  }
+}
+main {
+  grid-template-areas:
+    'input'
+    'preview';
+  textarea {
+    height: 20vh;
+  }
+}

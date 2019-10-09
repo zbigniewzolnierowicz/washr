@@ -1,6 +1,20 @@
-<div class="preview" [innerHTML]="profileEdit.value.bio | markdown"></div>
-<form [formGroup]="profileEdit" (ngSubmit)="onSubmit()">
-  <label>Bio: <textarea name="" id="" cols="30" rows="10" formControlName="bio"></textarea></label>
-  <button type="submit">Submit</button>
+
+<form [formGroup]="profileEdit" (ngSubmit)="onSubmit()" *ngIf="userData$ | async as userData">
+  <main>
+    <div [innerHTML]="profileEdit.value.bio | markdown" class="preview"></div>
+    <textarea name="" id="" cols="30" rows="10" formControlName="bio"></textarea>
+  </main>
+  <aside>
+    <header>
+      <h1><input type="text" [formGroup]="profileEdit" formControlName="displayName"></h1>
+    </header>
+    <section class="avatar">
+      <img [src]="userData.photoURL" alt="">
+    </section>
+    <section class="recentPosts">
+      <p *ngIf="status">{{ status }}</p>
+      <h2>Here will appear some recent posts... soon enough</h2>
+    </section>
+    <button type="submit">Submit</button>
+  </aside>
 </form>
-<p *ngIf="status">{{ status }}</p>
