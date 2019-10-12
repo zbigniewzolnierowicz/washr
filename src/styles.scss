@@ -27,7 +27,11 @@ body {
 }
 
 body {
-  background: $mainBG;
+  background-image: radial-gradient($mainBG 5%, transparent 5%), radial-gradient($mainFG 5%, transparent 5%);
+  background-color: #555555;
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+  background-attachment: fixed;
 }
 
 a {
