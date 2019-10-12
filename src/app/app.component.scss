@@ -1,5 +1,6 @@
 @import '../mixins/breakpoints.scss';
 @import '../mixins/colorscheme.scss';
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';
@@ -49,6 +50,10 @@ header {
       color: $headerFG;
     }
   }
+  h1 {
+    font-weight: 400;
+    font-family: 'Monoton', sans-serif;
+  }
 }
 
 .router {
@@ -63,6 +68,7 @@ section.buttons {
 
 .shown {
   display: grid;
+  background: #0000006c;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 3fr 1fr;
   position: fixed;
