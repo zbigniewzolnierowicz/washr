@@ -31,9 +31,11 @@ aggregateComments = functions.firestore.document('posts/{postId}/comments/{comme
 generateUserDocument = functions.auth.user().onCreate(user => {
   const userData = {
     email: user.email,
-    displayName: user.displayName,
+    displayName: user.displayName || user.email,
     phoneNumber: user.phoneNumber,
-    photoURL: user.photoURL,
+    photoURL:
+      user.photoURL ||
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Washer.600pix.jpg/526px-Washer.600pix.jpg',
     bio: '',
     followerCount: 0,
     following: []
