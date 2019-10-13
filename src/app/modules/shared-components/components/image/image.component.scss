@@ -2,3 +2,11 @@
   height: 200px;
   width: auto;
 }
+.shown {
+  filter: grayscale(100%);
+  transition: 300ms filter ease-in-out;
+  &:hover {
+    filter: grayscale(0);
+    filter: none;
+  }
+}
