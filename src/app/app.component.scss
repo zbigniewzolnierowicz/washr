@@ -1,6 +1,5 @@
 @import '../mixins/breakpoints.scss';
 @import '../mixins/colorscheme.scss';
-@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 @include for-size(phone-only) {
   @import './scss/phone.scss';
@@ -49,10 +48,6 @@ header {
     &:visited {
       color: $headerFG;
     }
-  }
-  h1 {
-    font-weight: 400;
-    font-family: 'Monoton', sans-serif;
   }
 }
 
