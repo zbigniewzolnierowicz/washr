@@ -23,7 +23,7 @@ export class UserDataService {
       flatMap(result => {
         return this.db
           .collection('users')
-          .doc<User>(result.uid)
+          .doc<User>(result.uid || '0')
           .get()
           .pipe(
             map(user => {
