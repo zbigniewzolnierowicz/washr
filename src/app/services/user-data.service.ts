@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map, flatMap } from 'rxjs/operators';
+import { concatMap, distinctUntilChanged, finalize, map, skipWhile, take, tap } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -20,19 +20,18 @@ export class UserDataService {
 
   loggedInUserData() {
     return this.afAuth.user.pipe(
-      flatMap(result => {
+      distinctUntilChanged(),
+      skipWhile(user => user == null),
+      take(1),
+      finalize(() => console.log('Finalized!')),
+      concatMap(user => {
         return this.db
           .collection('users')
-          .doc<User>(result.uid || '0')
+          .doc<User>(user.uid)
           .get()
           .pipe(
-            map(user => {
-              const userData = user.data();
-              return {
-                uid: user.id,
-                ...userData
-              } as User;
-            })
+            map(userDoc => userDoc.data()),
+            skipWhile(userData => userData === null)
           );
       })
     );
@@ -42,7 +41,10 @@ export class UserDataService {
     return this.db
       .collection('users')
       .doc(userID)
-      .get()
-      .pipe(map(user => user.data()));
+      .snapshotChanges()
+      .pipe(
+        map(user => user.payload.data()),
+        skipWhile(userData => userData === null)
+      );
   }
 }

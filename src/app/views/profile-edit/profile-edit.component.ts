@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataService } from 'src/app/services/user-data.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/interfaces/user';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-edit',
@@ -15,12 +15,20 @@ export class ProfileEditComponent implements OnInit {
     displayName: new FormControl(null)
   });
   status: string;
-  userData$: Observable<User>;
+  userData$: Observable<any>;
   constructor(private udS: UserDataService) {}
 
   ngOnInit() {
-    this.userData$ = this.udS.loggedInUserData();
-    this.userData$.subscribe(data => this.profileEdit.setValue({ bio: data.bio, displayName: data.displayName }));
+    this.userData$ = this.udS.loggedInUserData().pipe(catchError(err => (this.status = err)));
+    this.userData$.subscribe(data => {
+      console.log(data);
+      if (!!data) {
+        let { bio } = data;
+        const { displayName } = data;
+        bio = !!bio ? bio : '';
+        this.profileEdit.setValue({ bio, displayName });
+      }
+    });
   }
 
   onSubmit() {
