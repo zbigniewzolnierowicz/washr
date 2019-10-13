@@ -5,24 +5,29 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODOs
 
 - [x] Move the form outside of the post list
-- [ ] Add a function that generates a thumbnail for the uploaded video
-- [ ] Implement push notifications
 - [x] Add a detailed thread viewer
 - [x] Make the background something like #262a2b
 - [x] Make a separate scss for storing colors
-- [ ] Add some pins for the admin, mod, and significant people
 - [x] Add an option to toggle whether the user wants to see NSFW content or not
 - [x] Implement lazy loading of replies
   - **NOTE**: Only kind of implemented?
-- [ ] Add more user details
-- [ ] Make the same method as above, but with likes.
-- [ ] Add licenses
+- [x] Made the security rules better
 - [ ] Add more ways to log in
+  - [x] Added logging in via e-mail
+- [ ] Implement displaying of videos
+  - [ ] Replace the image tag with
+  - [ ] Add a function that generates a thumbnail for the uploaded video
+- [ ] Change up the colors
+- [ ] Implement push notifications
+- [ ] Add some pins for the admin, mod, and significant people
+- [ ] Add more user details
+- [ ] Add the ability to like or dislike posts
+- [ ] Add licenses
 - [ ] Make more post lists (i.e.: list of posts for people the user follows)
 - [ ] Implement lazy loading of posts
 - [ ] Make the page a11y-compliant
-- [x] Made the security rules better
 - [ ] Add a list of recent posts to profile view
+- [ ] Add a function that updates every post when a user updates their profile
 
 ## Development server
 
