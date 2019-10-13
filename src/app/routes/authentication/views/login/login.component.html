@@ -1,6 +1,14 @@
 <main>
   <h1>Log in to Washr</h1>
+  <section>
+    <form [formGroup]="loginInfo" (submit)="logInWithEmail()">
+      <input type="email" formControlName="email">
+      <input type="password" formControlName="password">
+      <button type="submit">Log in</button>
+    </form>
+  </section>
   <ul>
+    <li><button (click)="navigateToRegister()">Register</button></li>
     <li><button (click)="logInWithGoogle()">Log in with Google</button></li>
     <li><button (click)="logInWithGithub()">Log in with Github</button></li>
     <li><button (click)="logInWithSomethingElse()">Log in with something else</button></li>
