@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.afAuth.user.subscribe(u => (u ? (this.isLoggedIn = true) : (this.isLoggedIn = false)));
     this.nsfw.nsfwStatus.subscribe(nsfw => (this.showAdult = nsfw));
-    this.uS.loggedInUserData().subscribe(user => (this.userInfo = user));
+    this.uS.loggedInUserData().subscribe((user: User) => (this.userInfo = user));
   }
 
   hideButtons() {
