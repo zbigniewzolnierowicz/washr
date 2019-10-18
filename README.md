@@ -28,6 +28,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Make the page a11y-compliant
 - [ ] Add a list of recent posts to profile view
 - [ ] Add a function that updates every post when a user updates their profile
+- [ ] Rewrite the image overlay to use the Overlay from `@angular/cdk`
 
 ## Development server
 
