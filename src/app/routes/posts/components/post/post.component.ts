@@ -110,7 +110,7 @@ export class PostComponent implements OnInit {
     if (this.reply.value.image != null) {
       uploader = this.upS.uploadImageForPost(this.reply.value.image);
     }
-    const comment: Post = {
+    const comment: Comment = {
       // Object to be posted as a new reply
       ...this.reply.value,
       commentCount: 0,

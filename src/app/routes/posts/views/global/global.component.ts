@@ -65,7 +65,7 @@ export class GlobalComponent implements OnInit {
         // Object to be posted as a new post
         ...this.post.value,
         commentCount: 0,
-        postedAt: new Date(), // Get the date right
+        postedAt: firestore.FieldValue.serverTimestamp(), // Get the date right
         postedBy: this.afAuth.auth.currentUser.uid
       };
       if (this.post.value.image != null) {

@@ -7,26 +7,25 @@ import { finalize } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FileUploadService {
-
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage) {}
 
   generateExtension(fileType: string): string {
-      switch (fileType) {
-        case 'image/png':
-          return 'png';
-        case 'image/tiff':
-          return 'tiff';
-        case 'image/svg+xml':
-          return 'svg';
-        case 'image/webp':
-          return 'webp';
-        case 'image/jpeg':
-          return 'jpeg';
-        case 'image/gif':
-          return 'gif';
-        default:
-          return('.bmp');
-      }
+    switch (fileType) {
+      case 'image/png':
+        return 'png';
+      case 'image/tiff':
+        return 'tiff';
+      case 'image/svg+xml':
+        return 'svg';
+      case 'image/webp':
+        return 'webp';
+      case 'image/jpeg':
+        return 'jpeg';
+      case 'image/gif':
+        return 'gif';
+      default:
+        return '.bmp';
+    }
   }
 
   uploadImageForPost(file: File) {
@@ -39,5 +38,4 @@ export class FileUploadService {
       ref: storageRef
     };
   }
-
 }

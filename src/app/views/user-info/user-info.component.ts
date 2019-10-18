@@ -10,16 +10,12 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-
   userID: string;
   userInfo: Observable<any>;
 
   constructor(private route: ActivatedRoute, private uS: UserDataService) {
-    this.userInfo = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.uS.getUserData(params.get('id')))
-    );
+    this.userInfo = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.uS.getUserData(params.get('id'))));
   }
 
   ngOnInit() {}
-
 }
