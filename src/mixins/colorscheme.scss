@@ -1,30 +1,139 @@
-$mainBG: #262a2b;
-$mainFG: #ffffff;
-$headerBG: black;
-$headerFG: white;
+$backgrounds: (
+  'variant1': #252525,
+  'variant2': #272727,
+  'variant3': #242424,
+  'variant4': #3f3f3f,
+  'variant5': #808080
+);
+
+$foregrounds: (
+  'dark': white,
+  'light': black
+);
+
+$mainBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$mainFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$headerBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant1'
+);
+$headerFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
 $semitransparent: rgba(0, 0, 0, 0.25);
-$badgeBG: gray;
-$badgeFG: white;
-$postBG: #272727;
-$postFG: #ffffff;
-$postHeaderBG: #1a1a1a;
-$postHeaderFG: #ffffff;
-$tableHeaderBG: rgb(36, 36, 36);
-$tableHeaderFG: white;
-$tableStripedBG: rgb(63, 63, 63);
-$tableStripedFG: white;
-$tableUnstripedBG: rgb(44, 44, 44);
-$tableUnstripedFG: white;
-$postListBG: rgba(75, 75, 75, 0.5);
-$formBG: #272727;
-$formFG: #ffffff;
-$replyBG: #353535;
-$replyFG: #ffffff;
-$userInfoBG: #272727;
-$userInfoFG: #ffffff;
-$userHeaderFG: #ffffff;
-$userAsideBG: #272727;
-$userAsideFG: #ffffff;
-$linkBG: #c2ffee;
-$loginBG: #1a1a1a;
-$loginFG: #ffffff;
+$badgeBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant5'
+);
+$badgeFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$postBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant4'
+);
+$postFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$postHeaderBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$postHeaderFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$tableHeaderBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant3'
+);
+$tableHeaderFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$tableStripedBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant4'
+);
+$tableStripedFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$tableUnstripedBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant3'
+);
+$tableUnstripedFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$formBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$formFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$replyBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant4'
+);
+$replyFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$userInfoBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$userInfoFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$userHeaderFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$userAsideBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$userAsideFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$linkFG: #c2ffee;
+$loginBG: map-get(
+  $map: $backgrounds,
+  $key: 'variant2'
+);
+$loginFG: map-get(
+  $map: $foregrounds,
+  $key: 'dark'
+);
+$scrollTrack: map-get(
+  $map: $backgrounds,
+  $key: 'variant4'
+);
+$scrollThumb: map-get(
+  $map: $backgrounds,
+  $key: 'variant1'
+);
+$postHeaderSeparator: map-get(
+  $map: $backgrounds,
+  $key: 'variant1'
+);
+$inputBorder: map-get(
+  $map: $backgrounds,
+  $key: 'variant3'
+);

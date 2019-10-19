@@ -27,15 +27,11 @@ body {
 }
 
 body {
-  background-image: radial-gradient($mainBG 5%, transparent 5%), radial-gradient($mainFG 5%, transparent 5%);
-  background-color: #555555;
-  background-position: 0 0, 10px 10px;
-  background-size: 20px 20px;
-  background-attachment: fixed;
+  background: $mainBG;
 }
 
 a {
-  color: $linkBG;
+  color: $linkFG;
 }
 
 h1,
@@ -51,12 +47,10 @@ textarea {
   font-family: emoji;
   margin: 1em 0;
   color: $mainFG;
-  background: transparent;
-  border: 1px solid $postHeaderBG;
+  background: $inputBorder;
+  border: 1px solid $formBG;
   transition: 300ms box-shadow ease-in-out;
-  &:focus {
-    box-shadow: 0px 6px 9px 1px #cc00ff52;
-  }
+  box-shadow: 0px 2px 2px -2px black;
 }
 
 table {
@@ -214,14 +208,14 @@ pre {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: $replyBG;
+  background-color: $scrollTrack;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: $replyBG;
+  background-color: $scrollTrack;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $mainBG;
+  background-color: $scrollThumb;
 }
