@@ -7,6 +7,7 @@ const parser = new Converter({
   emoji: true,
   strikethrough: true,
   tables: true,
+  headerLevelStart: 2,
   extensions: [showdownHighlight, 'twitter']
 });
 
