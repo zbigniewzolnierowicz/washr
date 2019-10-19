@@ -87,9 +87,6 @@ main {
     grid-area: preview;
     max-height: 100%;
     overflow: auto;
-    table {
-      width: 100%;
-    }
   }
   textarea {
     grid-area: input;
@@ -114,5 +111,8 @@ main ::ng-deep {
     img {
       max-height: 30vh;
     }
+  }
+  table {
+    width: 100%;
   }
 }
