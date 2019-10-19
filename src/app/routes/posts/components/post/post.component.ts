@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, HostBinding } from '@angular/core';
-import { Post } from 'src/app/interfaces/post';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { finalize, tap } from 'rxjs/operators';
-import { Comment } from 'src/app/interfaces/comment';
-import { PostsService } from 'src/app/services/posts.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { NsfwService } from 'src/app/services/nsfw.service';
-import { UserDataService } from 'src/app/services/user-data.service';
-import { firestore } from 'firebase/app';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { firestore } from 'firebase/app';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { Comment } from 'src/app/interfaces/comment';
+import { Post } from 'src/app/interfaces/post';
+import { FileUploadService } from 'src/app/services/file-upload.service';
+import { NsfwService } from 'src/app/services/nsfw.service';
+import { PostsService } from 'src/app/services/posts.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 import Timestamp = firestore.Timestamp;
 
 @Component({
