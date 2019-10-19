@@ -6,6 +6,7 @@ import 'showdown-twitter';
 const parser = new Converter({
   emoji: true,
   strikethrough: true,
+  tables: true,
   extensions: [showdownHighlight, 'twitter']
 });
 
