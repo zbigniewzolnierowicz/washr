@@ -44,6 +44,7 @@ export class PostComponent implements OnInit {
   postimage: string;
   fileMetadata: any;
   displayShowMore = false;
+  actualDate: Date;
 
   constructor(
     private pS: PostsService,
@@ -59,6 +60,7 @@ export class PostComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.actualDate = (this.post.postedAt as Timestamp).toDate();
     this.replies = this.pS.getCommentsForPost(this.post, this.limit || null);
     if (this.post.commentCount > this.limit) {
       this.displayShowMore = true;

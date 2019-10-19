@@ -2,7 +2,7 @@
   <header>
     <h2 class="postTitle">{{ post.title }}</h2>
     <app-badge *ngIf="post.userData" [link]="post.postedBy" [img]="post.userData.userPhoto">{{ post.userData.userName }}</app-badge>
-    <h3 class="timestamp"><a [routerLink]="['/posts', 'post', post.id]">Posted at: {{ post?.postedAt?.toDate() | date:'medium' }}</a></h3>
+    <h3 class="timestamp"><a [routerLink]="['/posts', 'post', post.id]">Posted at: {{ actualDate | date:'medium' }}</a></h3>
     <div class="buttons" *ngIf="post.postedBy == userUID">
       <button (click)="deletePost()">Delete post</button>
       <button (click)="toggleIsEdit()">Edit post</button>
