@@ -36,6 +36,9 @@
 
   .preview {
     grid-area: preview;
+    table {
+      width: 100%;
+    }
   }
 
   form {

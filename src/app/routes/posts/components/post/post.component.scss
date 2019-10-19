@@ -109,6 +109,9 @@ header {
     .preview {
       grid-area: preview;
       margin: 4vh 2vw 0 2vw;
+      table {
+        width: 100%;
+      }
     }
   }
 }
