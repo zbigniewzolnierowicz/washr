@@ -19,18 +19,7 @@ export class PostViewComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
-      this.post$ = this.pS.getPost(this.id).pipe(
-        map(post => {
-          const id = post.id;
-          const ref = post.ref;
-          const data = post.data() as Post;
-          return {
-            id,
-            ref,
-            ...data
-          };
-        })
-      );
+      this.post$ = this.pS.getPost(this.id);
     });
   }
 }

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class PostsService {
   constructor(private db: AngularFirestore, private st: AngularFireStorage) {}
 
-  get getAllPosts() {
+  get getAllPosts(): Observable<Post[]> {
     return this.db
       .collection<Post>('posts', query => query.orderBy('postedAt', 'desc'))
       .snapshotChanges()
@@ -32,14 +32,24 @@ export class PostsService {
     return this.db
       .collection('posts')
       .doc(post)
-      .get();
+      .get()
+      .pipe(
+        map(postData => {
+          const data = postData.data() as Post;
+          return {
+            id: postData.id,
+            ref: postData.ref,
+            ...data
+          };
+        })
+      );
   }
 
-  getCommentsForPost(post: Post, limit?: number) {
+  getCommentsForPost(post: Post, limit?: number): Observable<Comment[]> {
     if (post.id !== '0') {
       return this.db
-        .doc(post.ref)
-        .collection('comments', query => query.orderBy('postedAt', 'desc').limit(limit || 0))
+        .doc<Post>(post.ref)
+        .collection<Comment[]>('comments', query => query.orderBy('postedAt', 'desc').limit(limit || 0))
         .snapshotChanges()
         .pipe(
           map((actions: any) => {
@@ -50,7 +60,7 @@ export class PostsService {
                 const ref = a.payload.doc.ref;
                 return { id, ref, ...data };
               })
-              .sort((a, b) => {
+              .sort((a: Comment, b: Comment) => {
                 if (a.postedAt > b.postedAt) {
                   return 1;
                 }
@@ -64,7 +74,7 @@ export class PostsService {
     }
   }
 
-  createPost(post: Post) {
+  createPost(post: Post): Promise<any> {
     return new Promise((resolve, reject) => {
       this.db
         .collection<Post>('posts')
@@ -74,7 +84,7 @@ export class PostsService {
     });
   }
 
-  addCommentToPost(post: Post, comment: Comment) {
+  addCommentToPost(post: Post, comment: Comment): Promise<any> {
     return new Promise((resolve, reject) => {
       // Add a new comment to the comments subcollection of a post
       post.ref
@@ -90,7 +100,7 @@ export class PostsService {
     });
   }
 
-  delete(subject: Post | Comment) {
+  delete(subject: Post | Comment): Promise<any> {
     if (subject.image) {
       this.st.ref(subject.image).delete();
     }

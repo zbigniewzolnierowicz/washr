@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { concatMap, distinctUntilChanged, finalize, map, skipWhile, take, tap } from 'rxjs/operators';
+import { concatMap, distinctUntilChanged, map, skipWhile, take } from 'rxjs/operators';
 import { User } from '../interfaces/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,40 +11,39 @@ import { User } from '../interfaces/user';
 export class UserDataService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
-  updateUserData(data: { bio: string; displayName: string }) {
+  updateUserData(data: Partial<User>): Promise<void> {
     const userID = this.afAuth.auth.currentUser.uid;
     return this.db
-      .collection('users')
-      .doc(userID)
+      .collection<User[]>('users')
+      .doc<User>(userID)
       .update({ ...data });
   }
 
-  loggedInUserData() {
+  loggedInUserData(): Observable<User> {
     return this.afAuth.user.pipe(
       distinctUntilChanged(),
       skipWhile(user => user == null),
       take(1),
-      finalize(() => console.log('Finalized!')),
       concatMap(user => {
         return this.db
-          .collection('users')
+          .collection<User[]>('users')
           .doc<User>(user.uid)
           .get()
           .pipe(
-            map(userDoc => userDoc.data()),
+            map(userDoc => userDoc.data() as User),
             skipWhile(userData => userData === null)
           );
       })
     );
   }
 
-  getUserData(userID: string) {
+  getUserData(userID: string): Observable<User> {
     return this.db
-      .collection('users')
-      .doc(userID)
+      .collection<User[]>('users')
+      .doc<User>(userID)
       .snapshotChanges()
       .pipe(
-        map(user => user.payload.data()),
+        map(user => user.payload.data() as User),
         skipWhile(userData => userData === null)
       );
   }
