@@ -1,4 +1,5 @@
 @import './mixins/colorscheme.scss';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/css/emojione.min.css');
 
 @font-face {
   font-family: emoji;
@@ -10,8 +11,7 @@
 @font-face {
   font-family: emoji;
 
-  src: local('Apple Color Emoji'), local('Noto Color Emoji'), local('Android Emoji'), local(EmojiSymbols),
-    url('https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/css/emojione.min.css');
+  src: local('Apple Color Emoji'), local('Noto Color Emoji'), local('Android Emoji'), local(EmojiSymbols), 'EmojiOne';
   /* Emoji unicode blocks */
   unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF;
 }
