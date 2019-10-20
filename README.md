@@ -15,7 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Add more ways to log in
   - [x] Added logging in via e-mail
 - [ ] Implement displaying of videos
-  - [ ] Replace the image tag with
+  - [ ] Replace the image tag with either an image or a video tag, depending on the type.
   - [ ] Add a function that generates a thumbnail for the uploaded video
 - [ ] Change up the colors
 - [ ] Implement push notifications
@@ -28,7 +28,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Make the page a11y-compliant
 - [ ] Add a list of recent posts to profile view
 - [ ] Add a function that updates every post when a user updates their profile
+- [ ] Move state management to NgRx
 - [ ] Rewrite the image overlay to use the Overlay from `@angular/cdk`
+  - **_DO LATER_** `@angular/cdk` overlays are terribly documented
 
 ## Development server
 
