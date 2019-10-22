@@ -1,10 +1,15 @@
-<form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
-  <label>Title: <input type="text" formControlName="title"></label>
-  <app-wysiwyg formControlName="content"></app-wysiwyg>
-  <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
-  <app-upload formControlName="image"></app-upload>
-  <button type="submit">Send</button>
-</form>
+<div class="new-post">
+  <header>
+    <h2>New post</h2>
+  </header>
+  <form [formGroup]="post" (ngSubmit)="onSubmit()" #form>
+    <label>Title: <input type="text" formControlName="title"></label>
+    <app-wysiwyg formControlName="content"></app-wysiwyg>
+    <label>Unsuitable for children <input type="checkbox" formControlName="isNSFW"></label>
+    <app-upload formControlName="image"></app-upload>
+    <button type="submit">Send</button>
+  </form>
+</div>
 <progress *ngIf="progress" [value]="progress || 0" max="100"></progress>
 <div class="error" *ngIf="error">
   <p>{{ error }}</p>
@@ -14,9 +19,9 @@
   <h1>{{ post.value.title }}</h1>
   <div class="content" [innerHTML]="post.value.content | markdown"></div>
 </div>
-<div class="posts" *ngIf="(posts$ | async) as posts; else loading">
+<main class="posts" *ngIf="(posts$ | async) as posts; else loading">
   <app-post *ngFor="let post of posts" [ngClass]="post.image ? 'image' : 'text'" [post]="post" [limit]="3"></app-post>
-</div>
+</main>
 
 <ng-template #loading>
   <div class="posts">
