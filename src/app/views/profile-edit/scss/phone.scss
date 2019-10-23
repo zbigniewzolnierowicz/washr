@@ -15,6 +15,7 @@ main {
     'preview';
   textarea {
     height: auto;
+    max-height: 50vh;
     margin: 1vh 0;
   }
 }
