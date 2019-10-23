@@ -1,5 +1,5 @@
 header {
-  flex-direction: column;
+  flex-direction: row;
   h1 {
     text-align: center;
   }
@@ -7,6 +7,9 @@ header {
     display: block;
   }
   section.buttons {
+    position: absolute;
+    top: 11vh;
+    right: 0;
     flex-direction: column;
     &.hidden {
       display: none;

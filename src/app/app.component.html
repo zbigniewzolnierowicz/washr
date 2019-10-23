@@ -1,6 +1,5 @@
 <header>
   <h1><a [routerLink]="'/'">{{ title }}</a></h1>
-  <button class="hider" (click)="hideButtons()">{{ buttonsHidden ? 'Show' : 'Hide' }} buttons</button>
   <section [ngClass]="['buttons', (buttonsHidden ? 'hidden' : '')]">
     <ng-container *ngIf="isLoggedIn">
       <app-badge *ngIf="userInfo" [img]="userInfo.photoURL">{{ userInfo.displayName }}</app-badge>
@@ -9,6 +8,7 @@
       <button (click)="logOut()">Log out</button>
     </ng-container>
   </section>
+  <button class="hider" (click)="hideButtons()">{{ buttonsHidden ? 'Show' : 'Hide' }} buttons</button>
 </header>
 <div class="shown" *ngIf="showImg.isShown | async" (click)="showImg.setShown(false)">
   <img [src]="showImg.imagePath | async" alt="">
