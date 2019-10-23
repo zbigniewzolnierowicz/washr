@@ -7,12 +7,22 @@ header {
     display: block;
   }
   section.buttons {
+    background: $headerBG;
     position: absolute;
-    top: 11vh;
+    top: 10vh;
     right: 0;
     flex-direction: column;
     &.hidden {
       display: none;
+    }
+    & > * {
+      margin: 0.5vh 1vw;
+    }
+    & > :first-child {
+      margin-top: 1vh !important;
+    }
+    & > :last-child {
+      margin-bottom: 1vh !important;
     }
   }
 }
