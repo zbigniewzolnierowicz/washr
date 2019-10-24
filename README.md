@@ -29,6 +29,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Add a list of recent posts to profile view
 - [ ] Add a function that updates every post when a user updates their profile
 - [ ] Move state management to NgRx
+- [ ] Implement date formatting with `moment.js`
+- [ ] Design the page with Adobe XD
 - [ ] Rewrite the image overlay to use the Overlay from `@angular/cdk`
   - **_DO LATER_** `@angular/cdk` overlays are terribly documented
 
