@@ -1,6 +1,10 @@
 # Washr
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+## What is it?
+
+Washr is my personal social media project. I got tired of Facebook's *terrible* web app. (You'd think the creators of the most popular front-end framework would know a thing or two on how to write responsive websites and about feature parity and why feature disparity is bad, but this isn't a place for that sort of rant.) But at the same time, I realized that I really like the way Facebook is structured. I want the end goal of Washr to be a Facebook clone, while stripping the unnecessary Facebook features and throwing in some features from places like 4chan (the layout of the post and (in the future) the way you can reference other people's comments), regular forums (thread-reply layout) and some other ideas from social media. At the same time, I don't want it to grow *too* out of control. For example, I don't think I'll be implementing any sort of messaging system, instead, I'd love to rely on something like XMPP, but I'm also really interested in things like WebSockets and ***GAH, THERE'S TOO MANY COOL THINGS TO LEARN, AND I'M JUST ONE MAN!***
+
+Anyways, this project is also an exercise in using as little external libraries as possible (no pre-built components! No Tailwind, no Bulma, and, heaven forbid, no Bootstrap!)
 
 ## TODOs
 
@@ -29,6 +33,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] Add a list of recent posts to profile view
 - [ ] Add a function that updates every post when a user updates their profile
 - [ ] Move state management to NgRx
+- [ ] Implement date formatting with `moment.js`
+- [ ] Design the page with Adobe XD
+- [ ] Add SSR via Angular Universal
+  - [ ] Add actual SSR by Angular Universal
+  - [ ] Move the web app from Firebase Hosting to Google App Engine
 - [ ] Rewrite the image overlay to use the Overlay from `@angular/cdk`
   - **_DO LATER_** `@angular/cdk` overlays are terribly documented
 
