@@ -5,6 +5,7 @@
 # You can see what browsers were selected by your queries by running:
 #   npx browserslist
 
+iOS 12
 > 0.5%
 last 2 versions
 Firefox ESR
