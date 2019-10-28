@@ -35,6 +35,9 @@ Anyways, this project is also an exercise in using as little external libraries 
 - [ ] Move state management to NgRx
 - [ ] Implement date formatting with `moment.js`
 - [ ] Design the page with Adobe XD
+- [ ] Add SSR via Angular Universal
+  - [ ] Add actual SSR by Angular Universal
+  - [ ] Move the web app from Firebase Hosting to Google App Engine
 - [ ] Rewrite the image overlay to use the Overlay from `@angular/cdk`
   - **_DO LATER_** `@angular/cdk` overlays are terribly documented
 
