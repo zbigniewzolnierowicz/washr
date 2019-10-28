@@ -36,6 +36,7 @@ Anyways, this project is also an exercise in using as little external libraries 
 - [ ] Add a function that updates every post when a user updates their profile
 - [ ] Move state management to NgRx
 - [ ] Implement date formatting with `moment.js`
+- [ ] If coming from a link, and the user is not logged in, redirect to login prompt, then back to the page they were trying to view
 - [ ] Add SSR via Angular Universal
   - [ ] Add actual SSR by Angular Universal
   - [ ] Move the web app from Firebase Hosting to Google App Engine
